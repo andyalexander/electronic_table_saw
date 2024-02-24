@@ -24,10 +24,10 @@ addf hal_gpio.write base-thread
 #net out limit3.0.out => stepgen.0.command
 
 setp stepgen.0.position-scale [JOINT_0]SCALE
-setp stepgen.0.steplen 1
-setp stepgen.0.stepspace 0
-setp stepgen.0.dirhold 35000
-setp stepgen.0.dirsetup 35000
+setp stepgen.0.steplen 3500
+setp stepgen.0.stepspace 3500
+setp stepgen.0.dirhold 8000
+setp stepgen.0.dirsetup 10000
 setp stepgen.0.maxaccel [JOINT_0]STEPGEN_MAXACCEL
 
 net xpos-cmd joint.0.motor-pos-cmd => stepgen.0.position-cmd
