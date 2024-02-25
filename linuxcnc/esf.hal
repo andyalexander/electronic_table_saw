@@ -3,6 +3,10 @@ loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]BASE_PERIOD servo_period_nsec=[EM
 loadrt hal_gpio inputs=PIN31 outputs=PIN13,PIN40,PIN33 
 loadrt stepgen step_type=0,0
 
+# load qtvcp display
+#loadusr -Wn table_saw qtvcp table_saw
+#loadusr -Wn test_panel qtvcp test_panel
+
 # estop
 loadrt estop_latch
 addf estop-latch.0 servo-thread

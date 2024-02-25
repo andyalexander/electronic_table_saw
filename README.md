@@ -5,6 +5,8 @@ ElectronicTableSaw
 
 * `sudo apt install glade`
 * Install QTVCP designer `/usr/lib/python3/dist-packages/qtvcp/designer/install_script`
+* #`sudo apt install python3-pip`
+* sudo apt install python3-gst-1.0
 
 ## Useful commands
 
@@ -46,3 +48,9 @@ ElectronicTableSaw
 * DIR ahead of PUL by 5us
 * Pulse width >= 2.5us
 * Low level width >= 2.5us
+
+
+
+## Useful gcode
+* G90 Xxx Yxx Zxx - absolute move
+* G91 Xxx Yxx Zxx - incremental move
