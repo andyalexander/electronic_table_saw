@@ -18,32 +18,19 @@ LOG = logger.getLogger(__name__)
 # Set the log level for this module
 LOG.setLevel(logger.INFO) # One of DEBUG, INFO, WARNING, ERROR, CRITICAL
 
-###########################################
-# **** INSTANTIATE LIBRARIES SECTION **** #
-###########################################
-
 KEYBIND = Keylookup()
 STATUS = Status()
 ACTION = Action()
-###################################
-# **** HANDLER CLASS SECTION **** #
-###################################
+
 
 class HandlerClass:
 
-    ########################
-    # **** INITIALIZE **** #
-    ########################
     # widgets allows access to  widgets from the QtVCP files
     # at this point the widgets and hal pins are not instantiated
     def __init__(self, halcomp,widgets,paths):
         self.hal = halcomp
         self.w = widgets
         self.PATHS = paths
-
-    ##########################################
-    # SPECIAL FUNCTIONS SECTION              #
-    ##########################################
 
     # at this point:
     # the widgets are instantiated.
@@ -53,10 +40,21 @@ class HandlerClass:
         for but_name in ['0','1','2','3','4','5','6','7','8','9','dot','clear']:
             but = getattr(self.w, f'but_num_{but_name}')
             but.clicked.connect(partial(self.calc_button_handler, but_name))
-        # pass
+
+        self.w.move_but_grid.setEnabled(False)
+
 
     def fence_move_to(self):
-        print("move")
+        calc_val = self.w.txt_fence_calc.text()
+        if calc_val:
+            gcode = f"G00 G90 X{calc_val}"
+            ACTION.CALL_MDI(gcode)
+
+    def fence_move_by(self):
+        calc_val = self.w.txt_fence_calc.text()
+        if calc_val:
+            gcode = f"G00 G91 X{calc_val}"
+            ACTION.CALL_MDI(gcode)
 
     def __getitem__(self, item):
         return getattr(self, item)
@@ -77,6 +75,12 @@ class HandlerClass:
             else:
                 txt =f'{txt}{text}'
         txt = txt.replace('..', '.')
+
+        if txt:
+            self.w.move_but_grid.setEnabled(True)
+        else:
+            self.w.move_but_grid.setEnabled(False)
+
         self.w.txt_fence_calc.setText(txt)
 
 
