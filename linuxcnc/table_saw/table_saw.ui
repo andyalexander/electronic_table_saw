@@ -27,7 +27,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="1">
+    <item row="0" column="0">
      <widget class="ScreenOptions" name="screen_options">
       <property name="enabled">
        <bool>true</bool>
@@ -803,9 +803,9 @@
        <property name="geometry">
         <rect>
          <x>550</x>
-         <y>190</y>
+         <y>110</y>
          <width>101</width>
-         <height>31</height>
+         <height>51</height>
         </rect>
        </property>
        <property name="font">
@@ -824,9 +824,9 @@
        <property name="geometry">
         <rect>
          <x>550</x>
-         <y>240</y>
+         <y>190</y>
          <width>101</width>
-         <height>41</height>
+         <height>51</height>
         </rect>
        </property>
        <property name="font">
@@ -1009,9 +1009,9 @@
        <property name="geometry">
         <rect>
          <x>550</x>
-         <y>290</y>
+         <y>270</y>
          <width>101</width>
-         <height>41</height>
+         <height>51</height>
         </rect>
        </property>
        <property name="font">
@@ -1191,45 +1191,6 @@
        </property>
        <property name="alt_textTemplate" stdset="0">
         <string>%1.2f mm</string>
-       </property>
-      </widget>
-      <widget class="QRadioButton" name="jog_rate_cont">
-       <property name="geometry">
-        <rect>
-         <x>520</x>
-         <y>70</y>
-         <width>106</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Cont</string>
-       </property>
-      </widget>
-      <widget class="QRadioButton" name="jog_rate_1_0">
-       <property name="geometry">
-        <rect>
-         <x>520</x>
-         <y>90</y>
-         <width>106</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0.5mm</string>
-       </property>
-      </widget>
-      <widget class="QRadioButton" name="jog_rate_0_5">
-       <property name="geometry">
-        <rect>
-         <x>520</x>
-         <y>110</y>
-         <width>106</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>1mm</string>
        </property>
       </widget>
      </widget>
