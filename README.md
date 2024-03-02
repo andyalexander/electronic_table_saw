@@ -7,12 +7,32 @@ Run the config by running `linuxcnc /home/cnc/`
 
 After installing linuc cnc run `menu-config` to finsh setting up the raspberry pi
 
+To enable auto-login, `sudo /etc/lightdm/lightdm.conf`, and uncomment `autologin-user=CNC`
+
+To have LinuxCNC start automatically with your config after turning on the computer go to System > Preferences > Sessions > Startup Applications, click Add. Browse to your config and select the `.ini` file. When the file picker dialog closes, add `linuxcnc` and a space in front of the path to your `.ini` file.
  
 ## Setup 
 
 * Install QTVCP designer `/usr/lib/python3/dist-packages/qtvcp/designer/install_script`
 * #`sudo apt install python3-pip`
 * sudo apt install python3-gst-1.0
+
+### Raspbery pi config
+
+You will need to edit the `config.txt` to add the following lines (For Elecrow RC070S)
+
+```
+hdmi_force_hotplug=1
+max_usb_current=1
+hdmi_group=2
+hdmi_mode=1
+hdmi_mode=87
+hdmi_cvt 1024 600 60 6 0 0 0
+hdmi_drive=2
+```
+
+You will also need to disable `dtoverlay=vc4-kms-v3d`
+
 
 ## Useful commands
 
