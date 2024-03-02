@@ -4,6 +4,9 @@ ElectronicTableSaw
 Clone this repo `https://github.com/andyalexander/electronic_table_saw.git` into `/home/cnc/linuxcnc`
 
 Run the config by running `linuxcnc /home/cnc/`
+
+After installing linuc cnc run `menu-config` to finsh setting up the raspberry pi
+
  
 ## Setup 
 
@@ -40,6 +43,7 @@ Run the config by running `linuxcnc /home/cnc/`
 * https://linuxcnc.org/docs/devel/html/drivers/hal_gpio.html
 * https://linuxcnc.org/docs/html/motion/tweaking-steppers.html
 * https://linuxcnc.org/docs/2.6/html/common/python-interface.html
+* https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 
 
 
