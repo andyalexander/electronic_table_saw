@@ -1,9 +1,12 @@
 # electronic_table_saw
 ElectronicTableSaw
 
+Clone this repo `https://github.com/andyalexander/electronic_table_saw.git` into `/home/cnc/linuxcnc`
+
+Run the config by running `linuxcnc /home/cnc/`
+ 
 ## Setup 
 
-* `sudo apt install glade`
 * Install QTVCP designer `/usr/lib/python3/dist-packages/qtvcp/designer/install_script`
 * #`sudo apt install python3-pip`
 * sudo apt install python3-gst-1.0
