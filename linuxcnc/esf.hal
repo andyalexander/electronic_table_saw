@@ -1,6 +1,11 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]BASE_PERIOD servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
-loadrt hal_gpio inputs=PIN31 outputs=PIN13,PIN40,PIN33 
+# RasPI5
+# loadrt hal_gpio inputs=PIN31 outputs=PIN13,PIN33,PIN40 
+
+# RasPI4
+loadrt hal_gpio inputs=[GPIO]FENCE_EM_STOP  outputs=[GPIO]FENCE_STEP,[GPIO]FENCE_DIR,[GPIO]FENCE_EN
+
 loadrt stepgen step_type=0,0
 
 # load qtvcp display
@@ -13,7 +18,7 @@ addf estop-latch.0 servo-thread
 net estop-loopout iocontrol.0.emc-enable-in <= estop-latch.0.ok-out
 net estop-loopin iocontrol.0.user-enable-out => estop-latch.0.ok-in
 net estop-reset iocontrol.0.user-request-enable => estop-latch.0.reset
-net remote-estop estop-latch.0.fault-in <=  hal_gpio.PIN31-in-not
+net remote-estop estop-latch.0.fault-in <=  hal_gpio.[GPIO]FENCE_EM_STOP-in-not
 
 addf stepgen.make-pulses base-thread
 addf stepgen.capture-position servo-thread
@@ -24,9 +29,6 @@ addf stepgen.update-freq servo-thread
 addf hal_gpio.read base-thread
 addf hal_gpio.write base-thread
 
-#net command gladevcp.position => limt3.0.in
-#net out limit3.0.out => stepgen.0.command
-
 setp stepgen.0.position-scale [JOINT_0]SCALE
 setp stepgen.0.steplen 3500
 setp stepgen.0.stepspace 3500
@@ -36,17 +38,8 @@ setp stepgen.0.maxaccel [JOINT_0]STEPGEN_MAXACCEL
 
 net xpos-cmd joint.0.motor-pos-cmd => stepgen.0.position-cmd
 net xpos-fb stepgen.0.position-fb => joint.0.motor-pos-fb
-net xstep stepgen.0.step => hal_gpio.PIN13-out
-net xdir stepgen.0.dir => hal_gpio.PIN40-out
+net xstep stepgen.0.step => hal_gpio.[GPIO]FENCE_STEP-out
+net xdir stepgen.0.dir => hal_gpio.[GPIO]FENCE_DIR-out
 net xenable joint.0.amp-enable-out => stepgen.0.enable
-net xenable stepgen.0.enable => hal_gpio.PIN33-out
-
-#net estop-ext <= hal_gpio.PIN31-in
-#net estop-ext => iocontrol.0.emc-enable-in
-#net estop-out <= iocontrol.0.user-enable-out
-#net estop-out => iocontrol.0.emc-enable-in
-
-#net estop-out <= iocontrol.0.user-enable-out
-#net estop-ext => iocontrol.0.emc-enable-in
-
+net xenable stepgen.0.enable => hal_gpio.[GPIO]FENCE_EN-out
 
