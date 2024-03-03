@@ -10,10 +10,15 @@ After installing linuc cnc run `menu-config` to finsh setting up the raspberry p
 To enable auto-login, `sudo /etc/lightdm/lightdm.conf`, and uncomment `autologin-user=CNC`
 
 To have LinuxCNC start automatically with your config after turning on the computer go to System > Preferences > Sessions > Startup Applications, click Add. Browse to your config and select the `.ini` file. When the file picker dialog closes, add `linuxcnc` and a space in front of the path to your `.ini` file.
+
+To set screen blanking, edit `.profile` in the home directory, and add the line `xset s 60` to the bottom, this will blank the screen after 60 seconds.  You may also want to disable 'Display power management' on the 'Display' tab of 'Power Manager'.
+
+Also, in 'Power manager' under the 'Security' tab, you can uncheck the 'Lock screen when system is going to sleep' option to avoid needing password when it wakes.
+
  
 ## Setup 
 
-* Install QTVCP designer `/usr/lib/python3/dist-packages/qtvcp/designer/install_script`
+* Install QTVCP designer `/usr/lib/python3/dist-packages/qtvcp/designer/install_script` selecting Option 3 - 'package installation' when asked.  
 * #`sudo apt install python3-pip`
 * sudo apt install python3-gst-1.0
 
