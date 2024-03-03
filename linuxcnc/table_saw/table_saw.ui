@@ -41,8 +41,8 @@
       <widget class="ActionButton" name="but_estop">
        <property name="geometry">
         <rect>
-         <x>700</x>
-         <y>20</y>
+         <x>840</x>
+         <y>10</y>
          <width>121</width>
          <height>81</height>
         </rect>
@@ -225,7 +225,7 @@
        <property name="geometry">
         <rect>
          <x>840</x>
-         <y>20</y>
+         <y>120</y>
          <width>121</width>
          <height>81</height>
         </rect>
@@ -714,7 +714,7 @@
         <string>0</string>
        </property>
       </widget>
-      <widget class="StateLED" name="stateled">
+      <widget class="StateLED" name="stateled" native="true">
        <property name="geometry">
         <rect>
          <x>890</x>
@@ -737,9 +737,9 @@
        <property name="geometry">
         <rect>
          <x>430</x>
-         <y>20</y>
+         <y>10</y>
          <width>141</width>
-         <height>161</height>
+         <height>191</height>
         </rect>
        </property>
        <property name="is_on_status" stdset="0">
@@ -752,9 +752,9 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>0</y>
           <width>121</width>
-          <height>61</height>
+          <height>81</height>
          </rect>
         </property>
         <property name="font">
@@ -770,9 +770,9 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>90</y>
+          <y>110</y>
           <width>121</width>
-          <height>61</height>
+          <height>81</height>
          </rect>
         </property>
         <property name="font">
@@ -788,15 +788,21 @@
       <widget class="JogIncrements" name="jogincrements">
        <property name="geometry">
         <rect>
-         <x>830</x>
-         <y>180</y>
-         <width>131</width>
+         <x>440</x>
+         <y>240</y>
+         <width>181</width>
          <height>51</height>
         </rect>
        </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="font">
         <font>
-         <pointsize>12</pointsize>
+         <pointsize>20</pointsize>
         </font>
        </property>
        <property name="currentText">
@@ -809,8 +815,8 @@
       <widget class="ActionButton" name="actionbutton_2">
        <property name="geometry">
         <rect>
-         <x>830</x>
-         <y>260</y>
+         <x>600</x>
+         <y>300</y>
          <width>131</width>
          <height>81</height>
         </rect>
@@ -821,7 +827,7 @@
         </font>
        </property>
        <property name="text">
-        <string>+</string>
+        <string>Left</string>
        </property>
        <property name="indicator_option" stdset="0">
         <bool>false</bool>
@@ -994,8 +1000,8 @@
       <widget class="ActionButton" name="actionbutton_3">
        <property name="geometry">
         <rect>
-         <x>830</x>
-         <y>370</y>
+         <x>440</x>
+         <y>300</y>
          <width>131</width>
          <height>81</height>
         </rect>
@@ -1006,7 +1012,7 @@
         </font>
        </property>
        <property name="text">
-        <string>-</string>
+        <string>Right</string>
        </property>
        <property name="indicator_option" stdset="0">
         <bool>false</bool>
@@ -1198,9 +1204,9 @@
         <property name="geometry">
          <rect>
           <x>190</x>
-          <y>30</y>
+          <y>10</y>
           <width>71</width>
-          <height>71</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="font">
@@ -1429,9 +1435,9 @@
         <property name="geometry">
          <rect>
           <x>280</x>
-          <y>30</y>
+          <y>10</y>
           <width>71</width>
-          <height>71</height>
+          <height>91</height>
          </rect>
         </property>
         <property name="font">
@@ -1614,9 +1620,9 @@
       <widget class="QPushButton" name="but_num_clear">
        <property name="geometry">
         <rect>
-         <x>270</x>
+         <x>269</x>
          <y>20</y>
-         <width>113</width>
+         <width>122</width>
          <height>61</height>
         </rect>
        </property>
@@ -1634,9 +1640,9 @@
        <property name="geometry">
         <rect>
          <x>910</x>
-         <y>530</y>
+         <y>500</y>
          <width>83</width>
-         <height>25</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="text">
@@ -1647,9 +1653,9 @@
        <property name="geometry">
         <rect>
          <x>910</x>
-         <y>500</y>
+         <y>440</y>
          <width>83</width>
-         <height>25</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="text">
