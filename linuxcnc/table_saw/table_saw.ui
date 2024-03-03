@@ -1445,6 +1445,32 @@
         <string>Clear</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>910</x>
+         <y>530</y>
+         <width>83</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Shutdown</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="geometry">
+        <rect>
+         <x>910</x>
+         <y>500</y>
+         <width>83</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Reboot</string>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -1510,8 +1536,8 @@
    <slot>fence_move_to()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>488</x>
-     <y>192</y>
+     <x>497</x>
+     <y>339</y>
     </hint>
     <hint type="destinationlabel">
      <x>540</x>
@@ -1526,8 +1552,8 @@
    <slot>fence_move_by()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>529</x>
-     <y>158</y>
+     <x>538</x>
+     <y>229</y>
     </hint>
     <hint type="destinationlabel">
      <x>901</x>
@@ -1535,9 +1561,43 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>system_reboot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>954</x>
+     <y>516</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>985</x>
+     <y>610</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>system_shutdown()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>933</x>
+     <y>552</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>925</x>
+     <y>618</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>fence_move_to()</slot>
   <slot>fence_move_by()</slot>
+  <slot>system_reboot()</slot>
+  <slot>system_shutdown()</slot>
  </slots>
 </ui>

@@ -10,6 +10,7 @@ from qtvcp.lib.keybindings import Keylookup
 from qtvcp.core import Status, Action
 
 from functools import partial
+import subprocess
 
 # Set up logging
 from qtvcp import logger
@@ -46,7 +47,7 @@ class HandlerClass:
         self.w.move_but_grid.setEnabled(False)
         self.w.showMaximized()
 
-    def fence_move_to(self)->None:
+    def fence_move_to(self) -> None:
         """
         Move fence to specific location using abs co-ordinates
         """
@@ -54,7 +55,6 @@ class HandlerClass:
         if calc_val:
             gcode = f"G00 G90 X{calc_val}"
             ACTION.CALL_MDI(gcode)
-
 
     def fence_move_by(self) -> None:
         """
@@ -71,9 +71,8 @@ class HandlerClass:
     def __setitem__(self, item, value):
         return setattr(self, item, value)
 
-
     @QtCore.pyqtSlot(str)
-    def calc_button_handler(self, text: str)-> None:
+    def calc_button_handler(self, text: str) -> None:
         """
         Handle button click for calculator buttons
         Called via partial() above.
@@ -100,6 +99,11 @@ class HandlerClass:
 
         self.w.txt_fence_calc.setText(txt)
 
+    def system_shutdown(self):
+        subprocess.run(['xfce4-session-logout', '--halt'])
+
+    def system_reboot(self):
+        subprocess.run(['xfce4-session-logout', '--reboot'])
 
 
 # required handler boiler code #
