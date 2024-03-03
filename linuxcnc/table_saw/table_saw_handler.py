@@ -47,32 +47,31 @@ class HandlerClass:
         self.w.move_but_grid.setEnabled(False)
         self.w.showMaximized()
 
-    def fence_move_to(self) -> None:
-        """
-        Move fence to specific location using abs co-ordinates
-        """
-        calc_val = self.w.txt_fence_calc.text()
-        if calc_val:
-            gcode = f"G00 G90 X{calc_val}"
+    def send_gcode_fence(self, gcode: str, require_calculator_value: bool) -> None:
+        """Send Fence gcode after substituting values"""
+        calculator_val = self.w.txt_fence_calc.text()
+        gcode = gcode.replace('<X>', calculator_val)
+
+        if calculator_val or not require_calculator_value:
             ACTION.CALL_MDI(gcode)
+
+    def fence_move_to(self) -> None:
+        """Move fence to specific location using abs co-ordinates"""
+        self.send_gcode_fence("G00 G90 X<X>", True)
+
 
     def fence_move_by(self) -> None:
-        """
-        Move fence by specific amount.  Uses relative co-ordinates
-        """
-        calc_val = self.w.txt_fence_calc.text()
-        if calc_val:
-            gcode = f"G00 G91 X{calc_val}"
-            ACTION.CALL_MDI(gcode)
+        """Move fence by specific amount.  Uses relative co-ordinates"""
+        self.send_gcode_fence("G00 G91 X<X>", True)
 
     def fence_set_position(self) -> None:
-        """
-        Set position of fence to current value in calculator using G92
-        """
-        calc_val = self.w.txt_fence_calc.text()
-        if calc_val:
-            gcode = f"G92 X{calc_val}"
-            ACTION.CALL_MDI(gcode)
+        """Set position of fence to current value in calculator using G92"""
+        self.send_gcode_fence("G92 X<X>", True)
+
+    def fence_set_home(self) -> None:
+        """Set machine abs position to current location"""
+        self.send_gcode_fence("G28.1", False)
+
 
     def __getitem__(self, item):
         return getattr(self, item)
