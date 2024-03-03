@@ -7,7 +7,7 @@ Run the config by running `linuxcnc /home/cnc/`
 
 After installing linuc cnc run `menu-config` to finsh setting up the raspberry pi
 
-To enable auto-login, `sudo /etc/lightdm/lightdm.conf`, and uncomment `autologin-user=CNC`
+To enable auto-login, `sudo /etc/lightdm/lightdm.conf`, and uncomment `autologin-user=CNC` in the `[Seat:*]` section as well as uncommenting the line `autologin-user-timeout=0`
 
 To have LinuxCNC start automatically with your config after turning on the computer go to System > Preferences > Sessions > Startup Applications, click Add. Browse to your config and select the `.ini` file. When the file picker dialog closes, add `linuxcnc` and a space in front of the path to your `.ini` file.
 
