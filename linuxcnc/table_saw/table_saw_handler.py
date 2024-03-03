@@ -39,14 +39,14 @@ class HandlerClass:
     # This is where you make HAL pins or initialize state of widgets etc
     def initialized__(self):
         # define and add handlers for all the numeric buttons in calc
-        for but_name in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'dot', 'clear']:
+        for but_name in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'dot', 'clear', 'sign']:
             but = getattr(self.w, f'but_num_{but_name}')
             but.clicked.connect(partial(self.calc_button_handler, but_name))
 
         self.w.move_but_grid.setEnabled(False)
         self.w.showMaximized()
 
-    def fence_move_to(self)->None:
+    def fence_move_to(self) -> None:
         """
         Move fence to specific location using abs co-ordinates
         """
@@ -54,7 +54,6 @@ class HandlerClass:
         if calc_val:
             gcode = f"G00 G90 X{calc_val}"
             ACTION.CALL_MDI(gcode)
-
 
     def fence_move_by(self) -> None:
         """
@@ -65,27 +64,40 @@ class HandlerClass:
             gcode = f"G00 G91 X{calc_val}"
             ACTION.CALL_MDI(gcode)
 
+    def fence_set_position(self) -> None:
+        """
+        Set position of fence to current value in calculator using G92
+        """
+        calc_val = self.w.txt_fence_calc.text()
+        if calc_val:
+            gcode = f"G92 X{calc_val}"
+            ACTION.CALL_MDI(gcode)
+
     def __getitem__(self, item):
         return getattr(self, item)
 
     def __setitem__(self, item, value):
         return setattr(self, item, value)
 
-
     @QtCore.pyqtSlot(str)
-    def calc_button_handler(self, text: str)-> None:
+    def calc_button_handler(self, text: str) -> None:
         """
         Handle button click for calculator buttons
         Called via partial() above.
         :param text: Button text
         :return: None
         """
-        txt = self.w.txt_fence_calc.text()
+        txt: str = self.w.txt_fence_calc.text()
         if text == 'clear':
             txt = ''
         elif text == 'dot':
             if '.' not in txt:
                 txt = f'{txt}.'
+        elif text == 'sign' and txt != '0':
+            if txt.startswith('-'):
+                txt = txt[1:]
+            else:
+                txt = f"-{txt}"
         else:
             if txt == '0':
                 txt = text
@@ -99,7 +111,6 @@ class HandlerClass:
             self.w.move_but_grid.setEnabled(False)
 
         self.w.txt_fence_calc.setText(txt)
-
 
 
 # required handler boiler code #

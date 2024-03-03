@@ -1,28 +1,16 @@
-# electronic_table_saw
-ElectronicTableSaw
+# Electronic Table Saw Fence
 
-Clone this repo `https://github.com/andyalexander/electronic_table_saw.git` into `/home/cnc/linuxcnc`
+## Getting started
 
-Run the config by running `linuxcnc /home/cnc/`
+Before you start download and write the image for Linux CNC Raspberry pi 4 to a memory card, and ensure the raspberry pi boots.
 
-After installing linuc cnc run `menu-config` to finsh setting up the raspberry pi
 
-To enable auto-login, `sudo /etc/lightdm/lightdm.conf`, and uncomment `autologin-user=CNC` in the `[Seat:*]` section as well as uncommenting the line `autologin-user-timeout=0`
 
-To have LinuxCNC start automatically with your config after turning on the computer go to System > Preferences > Sessions > Startup Applications, click Add. Browse to your config and select the `.ini` file. When the file picker dialog closes, add `linuxcnc` and a space in front of the path to your `.ini` file.
+### Raspbery pi harware setup
 
-To set screen blanking, edit `.profile` in the home directory, and add the line `xset s 60` to the bottom, this will blank the screen after 60 seconds.  You may also want to disable 'Display power management' on the 'Display' tab of 'Power Manager'.
+After installing linuxcnc run `menu-config` to finsh setting up the raspberry pi for the keyboard / locale settings you need.
 
-Also, in 'Power manager' under the 'Security' tab, you can uncheck the 'Lock screen when system is going to sleep' option to avoid needing password when it wakes.
-
- 
-## Setup 
-
-* Install QTVCP designer `/usr/lib/python3/dist-packages/qtvcp/designer/install_script` selecting Option 3 - 'package installation' when asked.  
-* #`sudo apt install python3-pip`
-* sudo apt install python3-gst-1.0
-
-### Raspbery pi config
+To allow the Raspberry PI to set the screen resolution, follow the instructions below.
 
 You will need to edit the `config.txt` to add the following lines (For Elecrow RC070S)
 
@@ -39,41 +27,79 @@ hdmi_drive=2
 You will also need to disable `dtoverlay=vc4-kms-v3d`
 
 
-## Useful commands
+### Software setup
 
-### Command line
+Clone this repo `https://github.com/andyalexander/electronic_table_saw.git` into `/home/cnc/linuxcnc`
 
-#### QTVCP
-* `designer -qt=5` to run the designer
+**Configure XFCE:**
+1. Enable auto-login:
+   * Edit `sudo /etc/lightdm/lightdm.conf`, and uncomment `autologin-user=CNC` in the `[Seat:*]` section 
+   * Uncommenting the line `autologin-user-timeout=0`
 
-#### General
+
+2. Let LinuxCNC start automatically with your config after turning on the computer:
+   * Go to System > Preferences > Sessions > Startup Applications, click Add. 
+   * Browse to your config and select the `.ini` file. When the file picker dialog closes, add `linuxcnc` and a space in front of the path to your `.ini` file.
+
+
+3. Set screen blanking
+   * Edit `.profile` in the home directory, and add the line `xset s 60` to the bottom, this will blank the screen after 60 seconds.  
+   * You may also want to disable 'Display power management' on the 'Display' tab of 'Power Manager'.
+
+
+4. Add the following line to the end of `.profile`, it will do a git pull each login, change to your cloned repo / confif location: `git -C /home/cnc/electronic_table_saw pull`
+
+
+5. In 'Power manager' under the 'Security' tab
+   * Uncheck the 'Lock screen when system is going to sleep' option to avoid needing password when it wakes
+   * Change 'Automatically lock the session' to 'Never'
+
+### Development setup 
+
+If you are developing on the Raspberry pi
+
+* Install QTVCP designer by running `/usr/lib/python3/dist-packages/qtvcp/designer/install_script` selecting Option 3 - 'package installation' when asked.
+* Use `designer -qt=5` to run the UI designer
+
+If you are developing on the mac, run: `open -a designer`
+
+
+
+
+
+## Useful references
+
+### Hardare
 
 * `gpioinfo`shows the line <> pin mappings
 * https://pinout.xyz/ site with more pin mapping info
 
-#### LinuxCNC
+### LinuxCNC
 
 * `halshow`
 * `halscope`
 * `halmeter`
 
 
-## Useful HAL components / pins
+### Useful HAL components / pins
 
 * `motion.motion-enabled` power button
 
 
-## Useful links
+### Useful links
 
 * https://linuxcnc.org/docs/devel/html/drivers/hal_gpio.html
 * https://linuxcnc.org/docs/html/motion/tweaking-steppers.html
 * https://linuxcnc.org/docs/2.6/html/common/python-interface.html
 * https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 
+### G-code
+* G90 Xxx Yxx Zxx - absolute move
+* G91 Xxx Yxx Zxx - incremental move
 
 
 
-## Stepper config
+## My config
 
 ### DM556T
 * ENA ahead of DIR by 200ms.  ENA high
@@ -83,6 +109,3 @@ You will also need to disable `dtoverlay=vc4-kms-v3d`
 
 
 
-## Useful gcode
-* G90 Xxx Yxx Zxx - absolute move
-* G91 Xxx Yxx Zxx - incremental move

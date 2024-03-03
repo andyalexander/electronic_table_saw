@@ -34,7 +34,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
-     <widget class="ScreenOptions" name="screen_options">
+     <widget class="ScreenOptions" name="screen_options" native="true">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -588,30 +588,6 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="2">
-         <widget class="QPushButton" name="but_num_dot">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>55</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>20</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>.</string>
-          </property>
-         </widget>
-        </item>
         <item row="3" column="1">
          <widget class="QPushButton" name="but_num_0">
           <property name="sizePolicy">
@@ -688,6 +664,54 @@
           </property>
          </widget>
         </item>
+        <item row="3" column="2">
+         <widget class="QPushButton" name="but_num_dot">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>55</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>.</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QPushButton" name="but_num_sign">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>55</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>+/-</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QLineEdit" name="txt_fence_calc">
@@ -696,13 +720,13 @@
          <x>30</x>
          <y>20</y>
          <width>237</width>
-         <height>51</height>
+         <height>61</height>
         </rect>
        </property>
        <property name="font">
         <font>
          <family>DejaVu Sans</family>
-         <pointsize>25</pointsize>
+         <pointsize>40</pointsize>
          <weight>50</weight>
          <bold>false</bold>
         </font>
@@ -714,7 +738,7 @@
         <string>0</string>
        </property>
       </widget>
-      <widget class="StateLED" name="stateled">
+      <widget class="StateLED" name="stateled" native="true">
        <property name="geometry">
         <rect>
          <x>890</x>
@@ -730,16 +754,16 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="StateEnableGridLayout" name="move_but_grid">
+      <widget class="StateEnableGridLayout" name="move_but_grid" native="true">
        <property name="enabled">
         <bool>false</bool>
        </property>
        <property name="geometry">
         <rect>
          <x>430</x>
-         <y>210</y>
+         <y>20</y>
          <width>141</width>
-         <height>191</height>
+         <height>161</height>
         </rect>
        </property>
        <property name="is_on_status" stdset="0">
@@ -752,7 +776,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>0</y>
           <width>121</width>
           <height>61</height>
          </rect>
@@ -770,7 +794,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>120</y>
+          <y>90</y>
           <width>121</width>
           <height>61</height>
          </rect>
@@ -1183,7 +1207,7 @@
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>430</y>
+         <y>420</y>
          <width>361</width>
          <height>111</height>
         </rect>
@@ -1197,7 +1221,7 @@
        <widget class="ActionButton" name="actionbutton">
         <property name="geometry">
          <rect>
-          <x>280</x>
+          <x>190</x>
           <y>30</y>
           <width>71</width>
           <height>71</height>
@@ -1397,14 +1421,14 @@
          <rect>
           <x>10</x>
           <y>30</y>
-          <width>261</width>
+          <width>161</width>
           <height>71</height>
          </rect>
         </property>
         <property name="font">
          <font>
           <family>DejaVu Sans</family>
-          <pointsize>37</pointsize>
+          <pointsize>40</pointsize>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -1425,14 +1449,199 @@
          <string>%10.1f</string>
         </property>
        </widget>
+       <widget class="ActionButton" name="set_current">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>30</y>
+          <width>71</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Set</string>
+        </property>
+        <property name="indicator_option" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="indicator_HAL_pin_option" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="indicator_status_option" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="checked_state_text_option" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="python_command_option" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="on_color" stdset="0">
+         <color>
+          <red>255</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </property>
+        <property name="shape_option" stdset="0">
+         <number>0</number>
+        </property>
+        <property name="off_color" stdset="0">
+         <color>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </property>
+        <property name="indicator_size" stdset="0">
+         <double>0.300000000000000</double>
+        </property>
+        <property name="circle_diameter" stdset="0">
+         <number>10</number>
+        </property>
+        <property name="right_edge_offset" stdset="0">
+         <number>0</number>
+        </property>
+        <property name="top_edge_offset" stdset="0">
+         <number>0</number>
+        </property>
+        <property name="corner_radius" stdset="0">
+         <double>5.000000000000000</double>
+        </property>
+        <property name="height_fraction" stdset="0">
+         <double>0.300000000000000</double>
+        </property>
+        <property name="width_fraction" stdset="0">
+         <double>0.900000000000000</double>
+        </property>
+        <property name="true_state_string" stdset="0">
+         <string>True</string>
+        </property>
+        <property name="false_state_string" stdset="0">
+         <string>False</string>
+        </property>
+        <property name="true_python_cmd_string" stdset="0">
+         <string>print(&quot;true command&quot;)</string>
+        </property>
+        <property name="false_python_cmd_string" stdset="0">
+         <string>print(&quot;false command&quot;)</string>
+        </property>
+        <property name="invert_the_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_paused_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_estopped_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_on_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_idle_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_homed_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_flood_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_mist_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_block_delete_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_optional_stop_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_joint_homed_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_limits_overridden_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_manual_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_mdi_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_auto_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_spindle_stopped_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_spindle_fwd_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="is_spindle_rev_status" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="joint_number_status" stdset="0">
+         <number>0</number>
+        </property>
+        <property name="zero_axis_action" stdset="0">
+         <bool>true</bool>
+        </property>
+        <property name="template_label_option" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="joint_number" stdset="0">
+         <number>0</number>
+        </property>
+        <property name="axis_letter" stdset="0">
+         <string>X</string>
+        </property>
+        <property name="incr_imperial_number" stdset="0">
+         <double>0.010000000000000</double>
+        </property>
+        <property name="incr_mm_number" stdset="0">
+         <double>0.025000000000000</double>
+        </property>
+        <property name="incr_angular_number" stdset="0">
+         <double>-1.000000000000000</double>
+        </property>
+        <property name="toggle_float_option" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="float_num" stdset="0">
+         <double>0.300000000000000</double>
+        </property>
+        <property name="float_alt_num" stdset="0">
+         <double>50.000000000000000</double>
+        </property>
+        <property name="view_type_string" stdset="0">
+         <string>P</string>
+        </property>
+        <property name="command_text_string" stdset="0">
+         <string/>
+        </property>
+        <property name="ini_mdi_number" stdset="0">
+         <number>0</number>
+        </property>
+        <property name="textTemplate" stdset="0">
+         <string>%1.3f in</string>
+        </property>
+        <property name="alt_textTemplate" stdset="0">
+         <string>%1.2f mm</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QPushButton" name="but_num_clear">
        <property name="geometry">
         <rect>
-         <x>277</x>
+         <x>270</x>
          <y>20</y>
          <width>113</width>
-         <height>51</height>
+         <height>61</height>
         </rect>
        </property>
        <property name="font">
@@ -1510,8 +1719,8 @@
    <slot>fence_move_to()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>488</x>
-     <y>192</y>
+     <x>500</x>
+     <y>122</y>
     </hint>
     <hint type="destinationlabel">
      <x>540</x>
@@ -1526,8 +1735,8 @@
    <slot>fence_move_by()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>529</x>
-     <y>158</y>
+     <x>541</x>
+     <y>32</y>
     </hint>
     <hint type="destinationlabel">
      <x>901</x>
@@ -1535,9 +1744,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>set_current</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>fence_set_position()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>365</x>
+     <y>507</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>368</x>
+     <y>621</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>fence_move_to()</slot>
   <slot>fence_move_by()</slot>
+  <slot>fence_set_position()</slot>
  </slots>
 </ui>
