@@ -588,6 +588,30 @@
           </property>
          </widget>
         </item>
+        <item row="3" column="2">
+         <widget class="QPushButton" name="but_num_dot">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>55</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>.</string>
+          </property>
+         </widget>
+        </item>
         <item row="3" column="1">
          <widget class="QPushButton" name="but_num_0">
           <property name="sizePolicy">
@@ -637,54 +661,6 @@
           </property>
           <property name="flat">
            <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="but_num_1">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>55</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>20</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2">
-         <widget class="QPushButton" name="but_num_dot">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>55</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>20</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>.</string>
           </property>
          </widget>
         </item>
@@ -738,7 +714,7 @@
         <string>0</string>
        </property>
       </widget>
-      <widget class="StateLED" name="stateled" native="true">
+      <widget class="StateLED" name="stateled">
        <property name="geometry">
         <rect>
          <x>890</x>
@@ -776,7 +752,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>0</y>
+          <y>10</y>
           <width>121</width>
           <height>61</height>
          </rect>
@@ -1654,6 +1630,32 @@
         <string>Clear</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>910</x>
+         <y>530</y>
+         <width>83</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Shutdown</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="geometry">
+        <rect>
+         <x>910</x>
+         <y>500</y>
+         <width>83</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Reboot</string>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -1760,10 +1762,44 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>system_reboot()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>954</x>
+     <y>516</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>985</x>
+     <y>610</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>system_shutdown()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>933</x>
+     <y>552</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>925</x>
+     <y>618</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>fence_move_to()</slot>
   <slot>fence_move_by()</slot>
   <slot>fence_set_position()</slot>
+  <slot>system_reboot()</slot>
+  <slot>system_shutdown()</slot>
  </slots>
 </ui>

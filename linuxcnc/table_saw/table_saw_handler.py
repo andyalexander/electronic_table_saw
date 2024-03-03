@@ -10,6 +10,7 @@ from qtvcp.lib.keybindings import Keylookup
 from qtvcp.core import Status, Action
 
 from functools import partial
+import subprocess
 
 # Set up logging
 from qtvcp import logger
@@ -112,6 +113,11 @@ class HandlerClass:
 
         self.w.txt_fence_calc.setText(txt)
 
+    def system_shutdown(self):
+        subprocess.run(['xfce4-session-logout', '--halt'])
+
+    def system_reboot(self):
+        subprocess.run(['xfce4-session-logout', '--reboot'])
 
 # required handler boiler code #
 def get_handlers(halcomp, widgets, paths):
