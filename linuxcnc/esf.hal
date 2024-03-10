@@ -4,12 +4,9 @@ loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]BASE_PERIOD servo_period_nsec=[EM
 # loadrt hal_gpio inputs=PIN31 outputs=PIN13,PIN33,PIN40 
 
 # RasPI4 - 6=estop 27=step 21=dir 13=en
-loadrt hal_gpio inputs=GPIO6 outputs=GPIO27,GPIO21,GPIO13
+#loadrt hal_gpio inputs=GPIO6 outputs=GPIO27,GPIO21,GPIO13
 loadrt stepgen step_type=0,0
 
-# load qtvcp display
-#loadusr -Wn table_saw qtvcp table_saw
-#loadusr -Wn test_panel qtvcp test_panel
 
 # estop
 loadrt estop_latch
@@ -17,7 +14,7 @@ addf estop-latch.0 servo-thread
 net estop-loopout iocontrol.0.emc-enable-in <= estop-latch.0.ok-out
 net estop-loopin iocontrol.0.user-enable-out => estop-latch.0.ok-in
 net estop-reset iocontrol.0.user-request-enable => estop-latch.0.reset
-net remote-estop estop-latch.0.fault-in <=  hal_gpio.GPIO6-in-not
+#net remote-estop estop-latch.0.fault-in <=  hal_gpio.GPIO6-in-not
 
 addf stepgen.make-pulses base-thread
 addf stepgen.capture-position servo-thread
@@ -25,8 +22,8 @@ addf motion-command-handler servo-thread
 addf motion-controller servo-thread
 addf stepgen.update-freq servo-thread
 
-addf hal_gpio.read base-thread
-addf hal_gpio.write base-thread
+#addf hal_gpio.read base-thread
+#addf hal_gpio.write base-thread
 
 setp stepgen.0.position-scale [JOINT_0]SCALE
 setp stepgen.0.steplen 3500
@@ -37,8 +34,8 @@ setp stepgen.0.maxaccel [JOINT_0]STEPGEN_MAXACCEL
 
 net xpos-cmd joint.0.motor-pos-cmd => stepgen.0.position-cmd
 net xpos-fb stepgen.0.position-fb => joint.0.motor-pos-fb
-net xstep stepgen.0.step => hal_gpio.GPIO27-out
-net xdir stepgen.0.dir => hal_gpio.GPIO21-out
+#net xstep stepgen.0.step => hal_gpio.GPIO27-out
+#net xdir stepgen.0.dir => hal_gpio.GPIO21-out
 net xenable joint.0.amp-enable-out => stepgen.0.enable
-net xenable stepgen.0.enable => hal_gpio.GPIO13-out
+#net xenable stepgen.0.enable => hal_gpio.GPIO13-out
 

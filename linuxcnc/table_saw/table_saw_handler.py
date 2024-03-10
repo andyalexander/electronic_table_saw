@@ -45,6 +45,7 @@ class HandlerClass:
             but.clicked.connect(partial(self.calc_button_handler, but_name))
 
         self.w.move_but_grid.setEnabled(False)
+        self.w.jogincrements.setCurrentIndex(1)
         self.w.showMaximized()
 
     def send_gcode_fence(self, gcode: str, require_calculator_value: bool) -> None:
@@ -105,7 +106,7 @@ class HandlerClass:
                 txt = f'{txt}{text}'
         txt = txt.replace('..', '.')
 
-        if txt:
+        if txt :
             self.w.move_but_grid.setEnabled(True)
         else:
             self.w.move_but_grid.setEnabled(False)
