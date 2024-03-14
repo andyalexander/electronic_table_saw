@@ -58,14 +58,12 @@ Clone this repo `https://github.com/andyalexander/electronic_table_saw.git` into
 If you want to use this, you will need to enable the commented line in the `.hal` file.  Note that you will also need to:
 
 * Copy the two `.rules` files to `/etc/udev/rules.d` (you will need to be `root` to do this).
-* Run `sudo udevadm control --reload` to reload the rules
-* Verify that you can still load `linuxcnc`
+* You may need to run `sudo udevadm control --reload` to reload the rules
 
 Useful commands to help diagnose permission issues:
 
 * `udevadm monitor --kernel --udev --property | tee udev.log`
-* 
-
+* Manually load the usr module, run `halrun` then enter `loadusr -W hal_input -KRAL SparkFun`
 
 
 
