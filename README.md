@@ -54,6 +54,21 @@ Clone this repo `https://github.com/andyalexander/electronic_table_saw.git` into
    * Uncheck the 'Lock screen when system is going to sleep' option to avoid needing password when it wakes
    * Change 'Automatically lock the session' to 'Never'
 
+### Installing Arduino level sensor
+If you want to use this, you will need to enable the commented line in the `.hal` file.  Note that you will also need to:
+
+* Copy the two `.rules` files to `/etc/udev/rules.d` (you will need to be `root` to do this).
+* Run `sudo udevadm control --reload` to reload the rules
+* Verify that you can still load `linuxcnc`
+
+Useful commands to help diagnose permission issues:
+
+* `udevadm monitor --kernel --udev --property | tee udev.log`
+* 
+
+
+
+
 ### Development setup 
 
 If you are developing on the Raspberry pi
