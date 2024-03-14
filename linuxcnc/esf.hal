@@ -25,6 +25,8 @@ addf stepgen.update-freq servo-thread
 #addf hal_gpio.read base-thread
 #addf hal_gpio.write base-thread
 
+loadusr -W hal_input -KRAL SparkFun
+
 setp stepgen.0.position-scale [JOINT_0]SCALE
 setp stepgen.0.steplen 3500
 setp stepgen.0.stepspace 3500
