@@ -1,4 +1,4 @@
-sloadrt [KINS]KINEMATICS
+loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]BASE_PERIOD servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 
 # RasPI4 - 6=estop 27=step 21=dir 13=en
