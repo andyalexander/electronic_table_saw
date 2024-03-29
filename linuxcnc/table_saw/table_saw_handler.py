@@ -1,19 +1,11 @@
-import sys
-import os
-import linuxcnc
-
-from PyQt5 import QtCore, QtWidgets
-
-from qtvcp.widgets.mdi_line import MDILine as MDI_WIDGET
-from qtvcp.widgets.gcode_editor import GcodeEditor as GCODE
-from qtvcp.lib.keybindings import Keylookup
-from qtvcp.core import Status, Action
-
-from functools import partial
 import subprocess
+from functools import partial
 
+from PyQt5 import QtCore
 # Set up logging
 from qtvcp import logger
+from qtvcp.core import Status, Action
+from qtvcp.lib.keybindings import Keylookup
 
 LOG = logger.getLogger(__name__)
 
@@ -56,6 +48,9 @@ class HandlerClass:
         if calculator_val or not require_calculator_value:
             ACTION.CALL_MDI(gcode)
 
+        if require_calculator_value:
+            self.fence_clear_display()
+
     def fence_move_to(self) -> None:
         """Move fence to specific location using abs co-ordinates"""
         self.send_gcode_fence("G00 G90 X<X>", True)
@@ -72,6 +67,9 @@ class HandlerClass:
     def fence_set_home(self) -> None:
         """Set machine abs position to current location"""
         self.send_gcode_fence("G28.1", False)
+
+    def fence_clear_display(self) -> None:
+        self.w.txt_fence_calc.setText('0')
 
 
     def __getitem__(self, item):

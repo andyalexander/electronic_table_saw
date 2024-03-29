@@ -719,7 +719,7 @@
         <rect>
          <x>30</x>
          <y>20</y>
-         <width>236</width>
+         <width>264</width>
          <height>61</height>
         </rect>
        </property>
@@ -771,9 +771,9 @@
        <property name="geometry">
         <rect>
          <x>460</x>
-         <y>10</y>
-         <width>141</width>
-         <height>191</height>
+         <y>0</y>
+         <width>221</width>
+         <height>181</height>
         </rect>
        </property>
        <property name="is_on_status" stdset="0">
@@ -786,9 +786,9 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>0</y>
-          <width>121</width>
-          <height>81</height>
+          <y>120</y>
+          <width>201</width>
+          <height>51</height>
          </rect>
         </property>
         <property name="font">
@@ -804,8 +804,8 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>110</y>
-          <width>121</width>
+          <y>10</y>
+          <width>201</width>
           <height>81</height>
          </rect>
         </property>
@@ -1044,7 +1044,7 @@
         <property name="font">
          <font>
           <family>DejaVu Sans</family>
-          <pointsize>29</pointsize>
+          <pointsize>30</pointsize>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -1254,9 +1254,9 @@
       <widget class="QPushButton" name="but_num_clear">
        <property name="geometry">
         <rect>
-         <x>277</x>
+         <x>304</x>
          <y>20</y>
-         <width>113</width>
+         <width>126</width>
          <height>61</height>
         </rect>
        </property>
@@ -1764,6 +1764,16 @@
         <bool>true</bool>
        </property>
       </widget>
+      <widget class="LCDNumber" name="lcdnumber">
+       <property name="geometry">
+        <rect>
+         <x>840</x>
+         <y>310</y>
+         <width>111</width>
+         <height>81</height>
+        </rect>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -1779,6 +1789,11 @@
   <customwidget>
    <class>PushButton</class>
    <extends>IndicatedPushButton</extends>
+   <header>qtvcp.widgets.simple_widgets</header>
+  </customwidget>
+  <customwidget>
+   <class>LCDNumber</class>
+   <extends>QLCDNumber</extends>
    <header>qtvcp.widgets.simple_widgets</header>
   </customwidget>
   <customwidget>
