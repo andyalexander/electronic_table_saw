@@ -12,7 +12,7 @@ addf estop-latch.0 servo-thread
 net estop-loopout iocontrol.0.emc-enable-in <= estop-latch.0.ok-out
 net estop-loopin iocontrol.0.user-enable-out => estop-latch.0.ok-in
 net estop-reset iocontrol.0.user-request-enable => estop-latch.0.reset
-net remote-estop estop-latch.0.fault-in <=  hal_gpio.GPIO22-in-not
+net remote-estop estop-latch.0.fault-in <=  hal_gpio.GPIO22-in
 
 addf stepgen.make-pulses base-thread
 addf stepgen.capture-position servo-thread
