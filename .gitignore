@@ -3,3 +3,6 @@ __pycache__/
 .idea
 *.swp
 .DS_Store
+halshow.preferences
+autosave.halscope
+
