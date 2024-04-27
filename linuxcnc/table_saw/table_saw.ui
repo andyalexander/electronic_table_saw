@@ -1827,7 +1827,7 @@
    <sender>but_set_position</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>fence_set_home()</slot>
+   <slot>fence_set_position()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>919</x>
@@ -1846,6 +1846,5 @@
   <slot>fence_set_position()</slot>
   <slot>system_reboot()</slot>
   <slot>system_shutdown()</slot>
-  <slot>fence_set_home()</slot>
  </slots>
 </ui>
