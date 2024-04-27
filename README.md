@@ -47,7 +47,16 @@ Clone this repo `https://github.com/andyalexander/electronic_table_saw.git` into
    * You may also want to disable 'Display power management' on the 'Display' tab of 'Power Manager'.
 
 
-4. Add the following line to the end of `.profile`, it will do a git pull each login, change to your cloned repo / confif location: `git -C /home/cnc/electronic_table_saw pull`
+4. Add the following line to the end of `.profile`, it will do a git pull each login, change to your cloned repo / config location: 
+```commandline
+git -C /home/cnc/electronic_table_saw pull
+```
+
+If you want to overwrite use:
+```commandline
+git -C /home/cnc/electronic_table_saw fetch --all
+git -C /home/cnc/electronic_table_saw reset --hard origin/main
+```
 
 
 5. In 'Power manager' under the 'Security' tab
