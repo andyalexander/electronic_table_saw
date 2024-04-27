@@ -1059,10 +1059,13 @@
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="Qreference_type" stdset="0">
-         <number>1</number>
+         <number>0</number>
         </property>
         <property name="metric_template" stdset="0">
          <string>%10.1f</string>
+        </property>
+        <property name="isHomed" stdset="0">
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="ActionButton" name="set_current">
@@ -1809,6 +1812,16 @@
         <bool>true</bool>
        </property>
       </widget>
+      <widget class="MDILine" name="mdiline">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>190</y>
+         <width>281</width>
+         <height>25</height>
+        </rect>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -1846,6 +1859,12 @@
    <class>DROLabel</class>
    <extends>QLabel</extends>
    <header>qtvcp.widgets.dro_widget</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MDILine</class>
+   <extends>QLineEdit</extends>
+   <header>qtvcp.widgets.mdi_line</header>
    <container>1</container>
   </customwidget>
   <customwidget>

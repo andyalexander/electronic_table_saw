@@ -53,7 +53,7 @@ class HandlerClass:
 
     def fence_move_to(self) -> None:
         """Move fence to specific location using abs co-ordinates"""
-        self.send_gcode_fence("G00 G90 X<X>", True)
+        self.send_gcode_fence("G00fzero G90 X<X>", True)
 
 
     def fence_move_by(self) -> None:
