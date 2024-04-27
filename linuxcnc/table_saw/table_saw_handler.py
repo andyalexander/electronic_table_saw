@@ -53,20 +53,19 @@ class HandlerClass:
 
     def fence_move_to(self) -> None:
         """Move fence to specific location using abs co-ordinates"""
-        self.send_gcode_fence("G00fzero G90 X<X>", True)
-
+        self.send_gcode_fence("G00 G90 X<X>", True)
 
     def fence_move_by(self) -> None:
         """Move fence by specific amount.  Uses relative co-ordinates"""
         self.send_gcode_fence("G00 G91 X<X>", True)
 
     def fence_set_position(self) -> None:
-        """Set position of fence to current value in calculator using G92"""
-        self.send_gcode_fence("G92 X<X>", True)
+        """Set position of fence to current value in calculator"""
+        self.send_gcode_fence("G10 L20 P0 X<X>", True)
 
     def fence_set_home(self) -> None:
-        """Set machine abs position to current location"""
-        self.send_gcode_fence("G28.1", False)
+        """Set machine position to current location"""
+        self.send_gcode_fence("G10 L20 P0 X0", False)
 
     def fence_clear_display(self) -> None:
         self.w.txt_fence_calc.setText('0')
