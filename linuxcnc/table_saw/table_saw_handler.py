@@ -63,9 +63,9 @@ class HandlerClass:
         """Set position of fence to current value in calculator"""
         self.send_gcode_fence("G10 L20 P0 X<X>", True)
 
-    def fence_set_home(self) -> None:
-        """Set machine position to current location"""
-        self.send_gcode_fence("G10 L20 P0 X0", False)
+    # def fence_set_home(self) -> None:
+    #     """Set machine position to current location"""
+    #     self.send_gcode_fence("G10 L20 P0 X0", False)
 
     def fence_clear_display(self) -> None:
         self.w.txt_fence_calc.setText('0')
