@@ -834,7 +834,7 @@
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="ActionButton" name="actionbutton">
+       <widget class="ActionButton" name="but_zero_fence">
         <property name="geometry">
          <rect>
           <x>230</x>
@@ -1032,19 +1032,19 @@
          <string>Current position</string>
         </property>
        </widget>
-       <widget class="DROLabel" name="dro_fence">
+       <widget class="DROLabel" name="dro_fence_abs">
         <property name="geometry">
          <rect>
-          <x>10</x>
+          <x>30</x>
           <y>30</y>
-          <width>211</width>
-          <height>71</height>
+          <width>191</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="font">
          <font>
           <family>DejaVu Sans</family>
-          <pointsize>30</pointsize>
+          <pointsize>19</pointsize>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -1068,10 +1068,78 @@
          <bool>false</bool>
         </property>
        </widget>
-       <widget class="ActionButton" name="set_current">
+       <widget class="DROLabel" name="dro_fence_rel">
         <property name="geometry">
          <rect>
-          <x>320</x>
+          <x>30</x>
+          <y>60</y>
+          <width>191</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DejaVu Sans</family>
+          <pointsize>19</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>-------</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::PlainText</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="Qreference_type" stdset="0">
+         <number>1</number>
+        </property>
+        <property name="metric_template" stdset="0">
+         <string>%10.1f</string>
+        </property>
+        <property name="isHomed" stdset="0">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>7</x>
+          <y>35</y>
+          <width>21</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>A</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>7</x>
+          <y>65</y>
+          <width>21</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>R</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="but_set_position">
+        <property name="geometry">
+         <rect>
+          <x>315</x>
           <y>10</y>
           <width>71</width>
           <height>91</height>
@@ -1079,178 +1147,12 @@
         </property>
         <property name="font">
          <font>
+          <family>DejaVu Sans</family>
           <pointsize>15</pointsize>
          </font>
         </property>
         <property name="text">
          <string>Set</string>
-        </property>
-        <property name="indicator_option" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="indicator_HAL_pin_option" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="indicator_status_option" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="checked_state_text_option" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="python_command_option" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="on_color" stdset="0">
-         <color>
-          <red>255</red>
-          <green>0</green>
-          <blue>0</blue>
-         </color>
-        </property>
-        <property name="shape_option" stdset="0">
-         <number>0</number>
-        </property>
-        <property name="off_color" stdset="0">
-         <color>
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
-         </color>
-        </property>
-        <property name="indicator_size" stdset="0">
-         <double>0.300000000000000</double>
-        </property>
-        <property name="circle_diameter" stdset="0">
-         <number>10</number>
-        </property>
-        <property name="right_edge_offset" stdset="0">
-         <number>0</number>
-        </property>
-        <property name="top_edge_offset" stdset="0">
-         <number>0</number>
-        </property>
-        <property name="corner_radius" stdset="0">
-         <double>5.000000000000000</double>
-        </property>
-        <property name="height_fraction" stdset="0">
-         <double>0.300000000000000</double>
-        </property>
-        <property name="width_fraction" stdset="0">
-         <double>0.900000000000000</double>
-        </property>
-        <property name="true_state_string" stdset="0">
-         <string>True</string>
-        </property>
-        <property name="false_state_string" stdset="0">
-         <string>False</string>
-        </property>
-        <property name="true_python_cmd_string" stdset="0">
-         <string>print(&quot;true command&quot;)</string>
-        </property>
-        <property name="false_python_cmd_string" stdset="0">
-         <string>print(&quot;false command&quot;)</string>
-        </property>
-        <property name="invert_the_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_paused_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_estopped_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_on_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_idle_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_homed_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_flood_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_mist_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_block_delete_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_optional_stop_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_joint_homed_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_limits_overridden_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_manual_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_mdi_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_auto_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_spindle_stopped_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_spindle_fwd_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="is_spindle_rev_status" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="joint_number_status" stdset="0">
-         <number>0</number>
-        </property>
-        <property name="zero_axis_action" stdset="0">
-         <bool>true</bool>
-        </property>
-        <property name="template_label_option" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="joint_number" stdset="0">
-         <number>0</number>
-        </property>
-        <property name="axis_letter" stdset="0">
-         <string>X</string>
-        </property>
-        <property name="incr_imperial_number" stdset="0">
-         <double>0.010000000000000</double>
-        </property>
-        <property name="incr_mm_number" stdset="0">
-         <double>0.025000000000000</double>
-        </property>
-        <property name="incr_angular_number" stdset="0">
-         <double>-1.000000000000000</double>
-        </property>
-        <property name="toggle_float_option" stdset="0">
-         <bool>false</bool>
-        </property>
-        <property name="float_num" stdset="0">
-         <double>0.300000000000000</double>
-        </property>
-        <property name="float_alt_num" stdset="0">
-         <double>50.000000000000000</double>
-        </property>
-        <property name="view_type_string" stdset="0">
-         <string>P</string>
-        </property>
-        <property name="command_text_string" stdset="0">
-         <string/>
-        </property>
-        <property name="ini_mdi_number" stdset="0">
-         <number>0</number>
-        </property>
-        <property name="textTemplate" stdset="0">
-         <string>%1.3f in</string>
-        </property>
-        <property name="alt_textTemplate" stdset="0">
-         <string>%1.2f mm</string>
         </property>
        </widget>
       </widget>
@@ -1273,7 +1175,7 @@
         <string>Clear</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="but_shutdown">
        <property name="geometry">
         <rect>
          <x>910</x>
@@ -1286,7 +1188,7 @@
         <string>Shutdown</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="but_reboot">
        <property name="geometry">
         <rect>
          <x>910</x>
@@ -1331,29 +1233,10 @@
          <height>301</height>
         </rect>
        </property>
-       <widget class="QPushButton" name="pushButton_3">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>200</y>
-          <width>121</width>
-          <height>91</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>DejaVu Sans</family>
-          <pointsize>15</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Set origin</string>
-        </property>
-       </widget>
        <widget class="ActionButton" name="actionbutton_3">
         <property name="geometry">
          <rect>
-          <x>10</x>
+          <x>170</x>
           <y>80</y>
           <width>131</width>
           <height>81</height>
@@ -1568,7 +1451,7 @@
        <widget class="ActionButton" name="actionbutton_2">
         <property name="geometry">
          <rect>
-          <x>170</x>
+          <x>10</x>
           <y>80</y>
           <width>131</width>
           <height>81</height>
@@ -1750,25 +1633,6 @@
          <string>%1.2f mm</string>
         </property>
        </widget>
-       <widget class="ActionButton" name="actionbutton_4">
-        <property name="geometry">
-         <rect>
-          <x>180</x>
-          <y>210</y>
-          <width>91</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Home fence</string>
-        </property>
-        <property name="home_action" stdset="0">
-         <bool>true</bool>
-        </property>
-        <property name="joint_number" stdset="0">
-         <number>0</number>
-        </property>
-       </widget>
       </widget>
       <widget class="StateLED" name="led_estop">
        <property name="geometry">
@@ -1784,16 +1648,6 @@
        </property>
        <property name="is_estopped_status" stdset="0">
         <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="LCDNumber" name="lcdnumber">
-       <property name="geometry">
-        <rect>
-         <x>840</x>
-         <y>310</y>
-         <width>111</width>
-         <height>81</height>
-        </rect>
        </property>
       </widget>
       <widget class="ActionButton" name="actionbutton_5">
@@ -1822,6 +1676,25 @@
         </rect>
        </property>
       </widget>
+      <widget class="ActionButton" name="but_home_fence">
+       <property name="geometry">
+        <rect>
+         <x>840</x>
+         <y>230</y>
+         <width>121</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Home fence</string>
+       </property>
+       <property name="home_action" stdset="0">
+        <bool>true</bool>
+       </property>
+       <property name="joint_number" stdset="0">
+        <number>0</number>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -1837,11 +1710,6 @@
   <customwidget>
    <class>PushButton</class>
    <extends>IndicatedPushButton</extends>
-   <header>qtvcp.widgets.simple_widgets</header>
-  </customwidget>
-  <customwidget>
-   <class>LCDNumber</class>
-   <extends>QLCDNumber</extends>
    <header>qtvcp.widgets.simple_widgets</header>
   </customwidget>
   <customwidget>
@@ -1924,23 +1792,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>set_current</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>fence_set_position()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>365</x>
-     <y>507</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>368</x>
-     <y>621</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_2</sender>
+   <sender>but_reboot</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>system_reboot()</slot>
@@ -1956,7 +1808,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton</sender>
+   <sender>but_shutdown</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>system_shutdown()</slot>
@@ -1972,7 +1824,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_3</sender>
+   <sender>but_set_position</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>fence_set_home()</slot>
