@@ -85,6 +85,7 @@ class HandlerClass:
         """Set machine co-ordinate zero position to current location"""
         self.send_gcode_fence("G10 L20 P1 X0", False)
         self.w.rad_user_coord.setChecked(True)
+
     # def fence_set_home(self) -> None:
     #     """Set machine position to current location"""
     #     self.send_gcode_fence("G10 L20 P0 X0", False)
@@ -92,6 +93,9 @@ class HandlerClass:
     def fence_clear_display(self) -> None:
         self.w.txt_fence_calc.setText('0')
 
+    def fence_home(self) -> None:
+        ACTION.SET_MACHINE_HOMING(0)
+        self.w.rad_machine_coord.setChecked(True)
 
     def __getitem__(self, item):
         return getattr(self, item)
