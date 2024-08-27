@@ -1,15 +1,10 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]BASE_PERIOD servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
-# RasPI5
-# loadrt hal_gpio inputs=PIN31 outputs=PIN13,PIN33,PIN40 
 
-# RasPI4 - 6=estop 27=step 21=dir 13=en
-loadrt hal_gpio inputs=GPIO6 outputs=GPIO27,GPIO21,GPIO13
+# RasPI4
+# SW1= GPIO22  SW2=GPIO27
+loadrt hal_gpio inputs=GPIO17,GPIO27,GPIO22,GPIO25,SPI_CE0_N,SPI_CE1_N outputs=GPIO5,GPIO6,GPIO13,SPI_SCLK,SPI_MISO,SPI_MOSI
 loadrt stepgen step_type=0,0
-
-# load qtvcp display
-#loadusr -Wn table_saw qtvcp table_saw
-#loadusr -Wn test_panel qtvcp test_panel
 
 # estop
 loadrt estop_latch
@@ -17,7 +12,11 @@ addf estop-latch.0 servo-thread
 net estop-loopout iocontrol.0.emc-enable-in <= estop-latch.0.ok-out
 net estop-loopin iocontrol.0.user-enable-out => estop-latch.0.ok-in
 net estop-reset iocontrol.0.user-request-enable => estop-latch.0.reset
-net remote-estop estop-latch.0.fault-in <=  hal_gpio.GPIO6-in-not
+net remote-estop estop-latch.0.fault-in <=  hal_gpio.GPIO22-in
+
+# table saw switches
+net table-home joint.0.home-sw-in <= hal_gpio.GPIO27-in-not
+
 
 addf stepgen.make-pulses base-thread
 addf stepgen.capture-position servo-thread
@@ -28,6 +27,8 @@ addf stepgen.update-freq servo-thread
 addf hal_gpio.read base-thread
 addf hal_gpio.write base-thread
 
+#loadusr -W hal_input -KRAL SparkFun
+
 setp stepgen.0.position-scale [JOINT_0]SCALE
 setp stepgen.0.steplen 3500
 setp stepgen.0.stepspace 3500
@@ -37,8 +38,14 @@ setp stepgen.0.maxaccel [JOINT_0]STEPGEN_MAXACCEL
 
 net xpos-cmd joint.0.motor-pos-cmd => stepgen.0.position-cmd
 net xpos-fb stepgen.0.position-fb => joint.0.motor-pos-fb
-net xstep stepgen.0.step => hal_gpio.GPIO27-out
-net xdir stepgen.0.dir => hal_gpio.GPIO21-out
+net xstep stepgen.0.step => hal_gpio.GPIO5-out
+net xdir stepgen.0.dir => hal_gpio.GPIO6-out
 net xenable joint.0.amp-enable-out => stepgen.0.enable
 net xenable stepgen.0.enable => hal_gpio.GPIO13-out
 
+# net ypos-cmd joint.1.motor-pos-cmd => stepgen.1.position-cmd
+# net ypos-fb stepgen.1.position-fb => joint.1.motor-pos-fb
+# net ystep stepgen.1.step => hal_gpio.SPI_SCLK-out
+# net ydir stepgen.1.dir => hal_gpio.SPI_MISO-out
+# net yenable joint.1.amp-enable-out => stepgen.1.enable
+# net yenable stepgen.1.enable => hal_gpio.SPI_MOSI-out

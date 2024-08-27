@@ -47,12 +47,34 @@ Clone this repo `https://github.com/andyalexander/electronic_table_saw.git` into
    * You may also want to disable 'Display power management' on the 'Display' tab of 'Power Manager'.
 
 
-4. Add the following line to the end of `.profile`, it will do a git pull each login, change to your cloned repo / confif location: `git -C /home/cnc/electronic_table_saw pull`
+4. Add the following line to the end of `.profile`, it will do a git pull each login, change to your cloned repo / config location: 
+```commandline
+git -C /home/cnc/electronic_table_saw pull
+```
+
+If you want to overwrite use:
+```commandline
+git -C /home/cnc/electronic_table_saw fetch --all
+git -C /home/cnc/electronic_table_saw reset --hard origin/main
+```
 
 
 5. In 'Power manager' under the 'Security' tab
    * Uncheck the 'Lock screen when system is going to sleep' option to avoid needing password when it wakes
    * Change 'Automatically lock the session' to 'Never'
+
+### Installing Arduino level sensor
+If you want to use this, you will need to enable the commented line in the `.hal` file.  Note that you will also need to:
+
+* Copy the two `.rules` files to `/etc/udev/rules.d` (you will need to be `root` to do this).
+* You may need to run `sudo udevadm control --reload` to reload the rules
+
+Useful commands to help diagnose permission issues:
+
+* `udevadm monitor --kernel --udev --property | tee udev.log`
+* Manually load the usr module, run `halrun` then enter `loadusr -W hal_input -KRAL SparkFun`
+
+
 
 ### Development setup 
 

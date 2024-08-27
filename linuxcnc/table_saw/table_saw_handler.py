@@ -1,11 +1,19 @@
-import subprocess
-from functools import partial
+import sys
+import os
+import linuxcnc
 
-from PyQt5 import QtCore
+from PyQt5 import QtCore, QtWidgets
+
+from qtvcp.widgets.mdi_line import MDILine as MDI_WIDGET
+from qtvcp.widgets.gcode_editor import GcodeEditor as GCODE
+from qtvcp.lib.keybindings import Keylookup
+from qtvcp.core import Status, Action
+
+from functools import partial
+import subprocess
+
 # Set up logging
 from qtvcp import logger
-from qtvcp.core import Status, Action
-from qtvcp.lib.keybindings import Keylookup
 
 LOG = logger.getLogger(__name__)
 
@@ -37,6 +45,7 @@ class HandlerClass:
             but.clicked.connect(partial(self.calc_button_handler, but_name))
 
         self.w.move_but_grid.setEnabled(False)
+        self.w.jogincrements.setCurrentIndex(1)
         self.w.showMaximized()
 
     def get_coord_sys(self) -> str:
@@ -53,6 +62,9 @@ class HandlerClass:
 
         if calculator_val or not require_calculator_value:
             ACTION.CALL_MDI(gcode)
+
+        if require_calculator_value:
+            self.fence_clear_display()
 
     def fence_move_to(self) -> None:
         """Move fence to specific location using machine co-ordinates and absolute movement"""
@@ -73,6 +85,12 @@ class HandlerClass:
         """Set machine co-ordinate zero position to current location"""
         self.send_gcode_fence("G10 L20 P1 X0", False)
         self.w.rad_user_coord.setChecked(True)
+    # def fence_set_home(self) -> None:
+    #     """Set machine position to current location"""
+    #     self.send_gcode_fence("G10 L20 P0 X0", False)
+
+    def fence_clear_display(self) -> None:
+        self.w.txt_fence_calc.setText('0')
 
 
     def __getitem__(self, item):
