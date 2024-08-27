@@ -717,10 +717,10 @@
       <widget class="StateLED" name="stateled" native="true">
        <property name="geometry">
         <rect>
-         <x>890</x>
-         <y>110</y>
-         <width>21</width>
-         <height>21</height>
+         <x>810</x>
+         <y>40</y>
+         <width>23</width>
+         <height>23</height>
         </rect>
        </property>
        <property name="invert_state_status" stdset="0">
@@ -815,8 +815,8 @@
       <widget class="ActionButton" name="actionbutton_2">
        <property name="geometry">
         <rect>
-         <x>600</x>
-         <y>300</y>
+         <x>570</x>
+         <y>290</y>
          <width>131</width>
          <height>81</height>
         </rect>
@@ -827,7 +827,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Left</string>
+        <string>Right</string>
        </property>
        <property name="indicator_option" stdset="0">
         <bool>false</bool>
@@ -1000,8 +1000,8 @@
       <widget class="ActionButton" name="actionbutton_3">
        <property name="geometry">
         <rect>
-         <x>440</x>
-         <y>300</y>
+         <x>430</x>
+         <y>290</y>
          <width>131</width>
          <height>81</height>
         </rect>
@@ -1012,7 +1012,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Right</string>
+        <string>Left</string>
        </property>
        <property name="indicator_option" stdset="0">
         <bool>false</bool>
@@ -1190,7 +1190,7 @@
         <rect>
          <x>30</x>
          <y>420</y>
-         <width>361</width>
+         <width>501</width>
          <height>111</height>
         </rect>
        </property>
@@ -1200,7 +1200,7 @@
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="ActionButton" name="actionbutton">
+       <widget class="ActionButton" name="set_zero">
         <property name="geometry">
          <rect>
           <x>190</x>
@@ -1675,6 +1675,73 @@
         <string>Set origin</string>
        </property>
       </widget>
+      <widget class="QFrame" name="frame_coord">
+       <property name="geometry">
+        <rect>
+         <x>400</x>
+         <y>440</y>
+         <width>121</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QRadioButton" name="rad_machine_coord">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>111</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Machine</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
+       </widget>
+       <widget class="QRadioButton" name="rad_user_coord">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>100</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>22</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>User</string>
+        </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
+       </widget>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -1838,4 +1905,7 @@
   <slot>system_shutdown()</slot>
   <slot>fence_set_home()</slot>
  </slots>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+ </buttongroups>
 </ui>

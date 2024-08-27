@@ -1,19 +1,11 @@
-import sys
-import os
-import linuxcnc
-
-from PyQt5 import QtCore, QtWidgets
-
-from qtvcp.widgets.mdi_line import MDILine as MDI_WIDGET
-from qtvcp.widgets.gcode_editor import GcodeEditor as GCODE
-from qtvcp.lib.keybindings import Keylookup
-from qtvcp.core import Status, Action
-
-from functools import partial
 import subprocess
+from functools import partial
 
+from PyQt5 import QtCore
 # Set up logging
 from qtvcp import logger
+from qtvcp.core import Status, Action
+from qtvcp.lib.keybindings import Keylookup
 
 LOG = logger.getLogger(__name__)
 
@@ -47,6 +39,13 @@ class HandlerClass:
         self.w.move_but_grid.setEnabled(False)
         self.w.showMaximized()
 
+    def get_coord_sys(self) -> str:
+        """Get the coordinate system string to use"""
+        ret = 'G53'
+        if self.w.rad_user_coord.isChecked():
+            ret = 'G54'
+        return ret
+
     def send_gcode_fence(self, gcode: str, require_calculator_value: bool) -> None:
         """Send Fence gcode after substituting values"""
         calculator_val = self.w.txt_fence_calc.text()
@@ -56,21 +55,24 @@ class HandlerClass:
             ACTION.CALL_MDI(gcode)
 
     def fence_move_to(self) -> None:
-        """Move fence to specific location using abs co-ordinates"""
-        self.send_gcode_fence("G00 G90 X<X>", True)
-
+        """Move fence to specific location using machine co-ordinates and absolute movement"""
+        co_ord = self.get_coord_sys()
+        self.send_gcode_fence(f"{co_ord} G90 G0 X<X>", True)
+        # self.send_gcode_fence("G53 G0 G90 X<X>", True)
 
     def fence_move_by(self) -> None:
         """Move fence by specific amount.  Uses relative co-ordinates"""
-        self.send_gcode_fence("G00 G91 X<X>", True)
+        self.send_gcode_fence("G91 G0 X<X>", True)
 
     def fence_set_position(self) -> None:
-        """Set position of fence to current value in calculator using G92"""
-        self.send_gcode_fence("G92 X<X>", True)
+        """Set position of fence to current value in calculator using G10 L20"""
+        self.send_gcode_fence("G10 L20 P1 X<X>", True)
+        self.w.rad_user_coord.setChecked(True)
 
     def fence_set_home(self) -> None:
-        """Set machine abs position to current location"""
-        self.send_gcode_fence("G28.1", False)
+        """Set machine co-ordinate zero position to current location"""
+        self.send_gcode_fence("G10 L20 P1 X0", False)
+        self.w.rad_user_coord.setChecked(True)
 
 
     def __getitem__(self, item):
@@ -117,6 +119,7 @@ class HandlerClass:
 
     def system_reboot(self):
         subprocess.run(['xfce4-session-logout', '--reboot'])
+
 
 # required handler boiler code #
 def get_handlers(halcomp, widgets, paths):
