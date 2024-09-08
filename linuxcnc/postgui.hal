@@ -1,0 +1,1 @@
+net table-home joint.0.home-sw-in <= table_saw.home_test
