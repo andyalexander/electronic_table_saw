@@ -15,7 +15,7 @@ net estop-reset iocontrol.0.user-request-enable => estop-latch.0.reset
 net remote-estop estop-latch.0.fault-in <=  hal_gpio.GPIO22-in
 
 # table saw switches
-net table-home joint.0.home-sw-in <= hal_gpio.GPIO27-in-not
+# net table-home joint.0.home-sw-in <= hal_gpio.GPIO27-in-not
 
 addf stepgen.make-pulses base-thread
 addf stepgen.capture-position servo-thread

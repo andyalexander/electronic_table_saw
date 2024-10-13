@@ -1,2 +1,2 @@
 # uncomment this to test the home sensor
-# net table-home joint.0.home-sw-in <= table_saw.home_test
+net table-home joint.0.home-sw-in <= table_saw.home_test
