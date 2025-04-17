@@ -27,6 +27,7 @@ hdmi_drive=2
 You will also need to disable `dtoverlay=vc4-kms-v3d`
 
 
+
 ### Software setup
 
 Clone this repo `https://github.com/andyalexander/electronic_table_saw.git` into `/home/cnc/linuxcnc`
@@ -65,6 +66,7 @@ git -C /home/cnc/electronic_table_saw reset --hard origin/main
 
 * You need to make sure the SPI isn't being used by the system (check if `gpioinfo` shows lines 7/8 as used or unused).
 * If used, run `menu-config` and edit `config.txt` via the kernel menu option. Comment out the line `dtparam=spi=on`
+* `sudo pip install python3-gst-1.0`
 
 ### Installing Arduino level sensor
 If you want to use this, you will need to enable the commented line in the `.hal` file.  Note that you will also need to:
