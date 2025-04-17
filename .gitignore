@@ -2,6 +2,7 @@
 __pycache__/
 .idea
 *.swp
+*.old
 .DS_Store
 halshow.preferences
 autosave.halscope
