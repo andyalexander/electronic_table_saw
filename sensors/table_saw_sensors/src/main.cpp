@@ -4,9 +4,7 @@
 #include "Joystick.h"
 #include "Kalman.h"
 
-Joystick_ Joystick;
-
-#define RESTRICT_PITCH // Comment out to restrict roll to ±90deg instead - please read: http://www.freescale.com/files/sensors/doc/app_note/AN3461.pdf
+Joystick_ Joystick(0x03, JOYSTICK_TYPE_JOYSTICK, 0, 0, true, true, false, false, false, false, false, false, false, false, false);
 
 Kalman kalmanX; // Create the Kalman instances
 Kalman kalmanY;
@@ -25,9 +23,13 @@ uint8_t i2cData[14]; // Buffer for I2C data
 
 
 void setup() { 
-  Serial.begin(115200);
-  
+  // Serial.begin(115200);
+  Joystick.setXAxisRange(-50, 50);
+  Joystick.setYAxisRange(-50, 50);
+  Joystick.begin();
+
   Wire.begin();
+  
   TWBR = ((F_CPU / 400000L) - 16) / 2; // Set I2C frequency to 400kHz
 
   i2cData[0] = 7; // Set the sample rate to 1000Hz - 8kHz/(7+1) = 1000Hz
@@ -142,39 +144,22 @@ void loop() {
   if (gyroYangle < -180 || gyroYangle > 180)
     gyroYangle = kalAngleY;
 
-  /* Print Data */
-#if 0 // Set to 1 to activate
-  Serial.print(accX); Serial.print("\t");
-  Serial.print(accY); Serial.print("\t");
-  Serial.print(accZ); Serial.print("\t");
 
-  Serial.print(gyroX); Serial.print("\t");
-  Serial.print(gyroY); Serial.print("\t");
-  Serial.print(gyroZ); Serial.print("\t");
+  // Serial.print(kalAngleX); Serial.print("\t");
+  // Serial.print("\t");
+  // Serial.print(kalAngleY); Serial.print("\t");
+  // Serial.print("\r\n");
 
-  Serial.print("\t");
-#endif
 
-  Serial.print(roll); Serial.print("\t");
-  Serial.print(gyroXangle); Serial.print("\t");
-  Serial.print(compAngleX); Serial.print("\t");
-  Serial.print(kalAngleX); Serial.print("\t");
+  Joystick.setXAxis(kalAngleX);
+  Joystick.setYAxis(kalAngleY);
 
-  Serial.print("\t");
+  // Joystick.pressButton(0);
+  // Joystick.sendState();
+  // delay(500);
+  // Joystick.releaseButton(0);
 
-  Serial.print(pitch); Serial.print("\t");
-  Serial.print(gyroYangle); Serial.print("\t");
-  Serial.print(compAngleY); Serial.print("\t");
-  Serial.print(kalAngleY); Serial.print("\t");
 
-#if 0 // Set to 1 to print the temperature
-  Serial.print("\t");
-
-  double temperature = (double)tempRaw / 340.0 + 36.53;
-  Serial.print(temperature); Serial.print("\t");
-#endif
-
-  Serial.print("\r\n");
-  delay(2);
+  delay(100);
 }
 

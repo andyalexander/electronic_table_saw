@@ -33,19 +33,17 @@ Clone this repo `https://github.com/andyalexander/electronic_table_saw.git` into
 
 **Configure XFCE:**
 1. Enable auto-login:
-   * Edit `sudo /etc/lightdm/lightdm.conf`, and uncomment `autologin-user=CNC` in the `[Seat:*]` section 
-   * Uncommenting the line `autologin-user-timeout=0`
-
+   * `sudo nano /etc/lightdm/lightdm.conf`
+   * In the `[Seat:*]` section uncomment and edit `autologin-user=CNC`  
+   * In the `[Seat:*]` section uncomment the line `autologin-user-timeout=0`
 
 2. Let LinuxCNC start automatically with your config after turning on the computer:
    * Go to System > Preferences > Sessions > Startup Applications, click Add. 
-   * Browse to your config and select the `.ini` file. When the file picker dialog closes, add `linuxcnc` and a space in front of the path to your `.ini` file.
-
+   * Browse to your config and select the `.ini` file. When the file picker dialog closes, add `linuxcnc` and a space in front of the path to your `.ini` file in the 'command'.
 
 3. Set screen blanking
    * Edit `.profile` in the home directory, and add the line `xset s 60` to the bottom, this will blank the screen after 60 seconds.  
    * You may also want to disable 'Display power management' on the 'Display' tab of 'Power Manager'.
-
 
 4. Add the following line to the end of `.profile`, it will do a git pull each login, change to your cloned repo / config location: 
 ```commandline
@@ -91,7 +89,7 @@ If you are developing on the mac, run: `open -a designer`
 
 ## Useful references
 
-### Hardare
+### Hardware
 
 * `gpioinfo`shows the line <> pin mappings
 * https://pinout.xyz/ site with more pin mapping info
