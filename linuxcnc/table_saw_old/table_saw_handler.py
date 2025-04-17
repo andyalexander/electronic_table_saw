@@ -57,11 +57,8 @@ class HandlerClass:
 
     def send_gcode_fence(self, gcode: str, require_calculator_value: bool) -> None:
         """Send Fence gcode after substituting values"""
-        calculator_val = None
-
-        if require_calculator_value:
-            calculator_val = self.w.txt_fence_calc.text()
-            gcode = gcode.replace('<X>', calculator_val)
+        calculator_val = self.w.txt_fence_calc.text()
+        gcode = gcode.replace('<X>', calculator_val)
 
         if calculator_val or not require_calculator_value:
             ACTION.CALL_MDI(gcode)
@@ -88,6 +85,10 @@ class HandlerClass:
         """Set machine co-ordinate zero position to current location"""
         self.send_gcode_fence("G10 L20 P1 X0", False)
         self.w.rad_user_coord.setChecked(True)
+
+    # def fence_set_home(self) -> None:
+    #     """Set machine position to current location"""
+    #     self.send_gcode_fence("G10 L20 P0 X0", False)
 
     def fence_clear_display(self) -> None:
         self.w.txt_fence_calc.setText('0')
