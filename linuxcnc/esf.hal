@@ -4,7 +4,10 @@ loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]BASE_PERIOD servo_period_nsec=[EM
 # RasPI4
 # SW1= GPIO22  SW2=GPIO27
 # loadrt hal_gpio inputs=GPIO17,GPIO27,GPIO22,GPIO25,SPI_CE0_N,SPI_CE1_N outputs=GPIO5,GPIO6,GPIO13,SPI_SCLK,SPI_MISO,SPI_MOSI
+
+# RasPI5
 loadrt hal_gpio inputs=GPIO17,GPIO27,GPIO22,GPIO25,GPIO8,GPIO7 outputs=GPIO5,GPIO6,GPIO13,GPIO11,GPIO9,GPIO10
+
 loadrt stepgen step_type=0,0
 
 # estop
@@ -16,7 +19,7 @@ net estop-reset iocontrol.0.user-request-enable => estop-latch.0.reset
 net remote-estop estop-latch.0.fault-in <= hal_gpio.GPIO27-in
 
 # table saw switches
-# net table-home joint.0.home-sw-in <= hal_gpio.GPIO22-in-not
+net table-home joint.0.home-sw-in <= hal_gpio.GPIO22-in-not
 
 addf stepgen.make-pulses base-thread
 addf stepgen.capture-position servo-thread
@@ -27,6 +30,7 @@ addf stepgen.update-freq servo-thread
 addf hal_gpio.read base-thread
 addf hal_gpio.write base-thread
 
+# Angle finder
 #loadusr -W hal_input -KRAL SparkFun
 
 setp stepgen.0.position-scale [JOINT_0]SCALE

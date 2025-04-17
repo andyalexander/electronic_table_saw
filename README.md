@@ -61,6 +61,11 @@ git -C /home/cnc/electronic_table_saw reset --hard origin/main
    * Uncheck the 'Lock screen when system is going to sleep' option to avoid needing password when it wakes
    * Change 'Automatically lock the session' to 'Never'
 
+#### Raspbery Pi 5
+
+* You need to make sure the SPI isn't being used by the system (check if `gpioinfo` shows lines 7/8 as used or unused).
+* If used, run `menu-config` and edit `config.txt` via the kernel menu option. Comment out the line `dtparam=spi=on`
+
 ### Installing Arduino level sensor
 If you want to use this, you will need to enable the commented line in the `.hal` file.  Note that you will also need to:
 
