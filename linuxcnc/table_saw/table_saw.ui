@@ -2171,6 +2171,19 @@ Value</string>
         </widget>
        </widget>
       </widget>
+      <widget class="LED" name="led">
+       <property name="geometry">
+        <rect>
+         <x>770</x>
+         <y>440</y>
+         <width>15</width>
+         <height>15</height>
+        </rect>
+       </property>
+       <property name="pin_name" stdset="0">
+        <string>hal_gpio.GPIO22-in-not</string>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
