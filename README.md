@@ -34,8 +34,10 @@ Clone this repo `https://github.com/andyalexander/electronic_table_saw.git` into
 
 **Configure XFCE:**
 1. Enable auto-login:
+   * `sudo groupadd -r autologin`
+   * `sudo gpasswd -a cnc autologin`
    * `sudo nano /etc/lightdm/lightdm.conf`
-   * In the `[Seat:*]` section uncomment and edit `autologin-user=CNC`  
+   * In the `[Seat:*]` section uncomment and edit `autologin-user=cnc` (the username is case sensitive, the default is lower case)
    * In the `[Seat:*]` section uncomment the line `autologin-user-timeout=0`
 
 2. Let LinuxCNC start automatically with your config after turning on the computer:
@@ -45,6 +47,9 @@ Clone this repo `https://github.com/andyalexander/electronic_table_saw.git` into
 3. Set screen blanking
    * Edit `.profile` in the home directory, and add the line `xset s 60` to the bottom, this will blank the screen after 60 seconds.  
    * You may also want to disable 'Display power management' on the 'Display' tab of 'Power Manager'.
+
+4. Enable auto hide of the taskbar
+   * Right click the panel at the top, select Panel > Panel Preferences > Display, select 'automatically hide the panel = always'
 
 4. Add the following line to the end of `.profile`, it will do a git pull each login, change to your cloned repo / config location: 
 ```commandline
