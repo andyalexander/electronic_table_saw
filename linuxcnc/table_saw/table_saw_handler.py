@@ -4,9 +4,6 @@ import linuxcnc
 
 from PyQt5 import QtCore, QtWidgets
 
-from qtvcp.widgets.mdi_line import MDILine as MDI_WIDGET
-from qtvcp.widgets.gcode_editor import GcodeEditor as GCODE
-from qtvcp.lib.keybindings import Keylookup
 from qtvcp.core import Status, Action
 
 from functools import partial
@@ -20,7 +17,6 @@ LOG = logger.getLogger(__name__)
 # Set the log level for this module
 LOG.setLevel(logger.INFO)  # One of DEBUG, INFO, WARNING, ERROR, CRITICAL
 
-KEYBIND = Keylookup()
 STATUS = Status()
 ACTION = Action()
 
@@ -46,6 +42,8 @@ class HandlerClass:
 
         self.w.move_but_grid.setEnabled(False)
         self.w.jogincrements.setCurrentIndex(1)
+        self.w.but_shutdown.clicked.connect(self.system_shutdown)
+        self.w.but_reboot.clicked.connect(self.system_reboot)
         self.w.showMaximized()
 
     def get_coord_sys(self) -> str:
@@ -73,7 +71,6 @@ class HandlerClass:
         """Move fence to specific location using machine co-ordinates and absolute movement"""
         co_ord = self.get_coord_sys()
         self.send_gcode_fence(f"{co_ord} G90 G0 X<X>", True)
-        # self.send_gcode_fence("G53 G0 G90 X<X>", True)
 
     def fence_move_by(self) -> None:
         """Move fence by specific amount.  Uses relative co-ordinates"""

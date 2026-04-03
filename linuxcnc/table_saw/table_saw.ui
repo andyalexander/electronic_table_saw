@@ -839,7 +839,7 @@
          <string>Move to</string>
         </property>
        </widget>
-       <widget class="ActionButton" name="actionbutton_2">
+       <widget class="ActionButton" name="but_jog_right">
         <property name="geometry">
          <rect>
           <x>170</x>
@@ -1024,7 +1024,7 @@
          <string>%1.2f mm</string>
         </property>
        </widget>
-       <widget class="ActionButton" name="actionbutton_3">
+       <widget class="ActionButton" name="but_jog_left">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -1259,7 +1259,7 @@
         <string>Clear</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="but_shutdown">
        <property name="geometry">
         <rect>
          <x>910</x>
@@ -1272,7 +1272,7 @@
         <string>Shutdown</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="but_reboot">
        <property name="geometry">
         <rect>
          <x>910</x>
