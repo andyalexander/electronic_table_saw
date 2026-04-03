@@ -46,6 +46,8 @@ class HandlerClass:
 
         self.w.move_but_grid.setEnabled(False)
         self.w.jogincrements.setCurrentIndex(1)
+        self.w.but_shutdown.clicked.connect(self.system_shutdown)
+        self.w.but_reboot.clicked.connect(self.system_reboot)
         self.w.showMaximized()
 
     def get_coord_sys(self) -> str:
