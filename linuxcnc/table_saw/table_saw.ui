@@ -61,7 +61,7 @@ QComboBox:disabled { background-color: #2a2a2a; color: #555555; border: 1px soli
 QComboBox QAbstractItemView { background-color: #3c3f41; color: #f0f0f0; selection-background-color: #4a6a9a; border: 1px solid #5a5a5a; }
 QRadioButton { color: #3a4450; font-size: 14pt; background-color: transparent; }
 QRadioButton::indicator { width: 20px; height: 20px; border-radius: 10px; border: 2px solid #aaaaaa; background-color: #2a2a2a; }
-QRadioButton::indicator:checked { background-color: #00cc66; border: 2px solid #00ff88; }
+QRadioButton::indicator:checked { background-color: #3a4450; border: 2px solid #6688aa; }
 QRadioButton::indicator:unchecked:hover { border: 2px solid #cccccc; }
 QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: #252525; }</string>
   </property>
@@ -94,6 +94,9 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
        <number>10</number>
       </property>
       <property name="catch_close_option" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="closeDialog_option" stdset="0">
        <bool>true</bool>
       </property>
       <property name="catch_errors_option" stdset="0">
