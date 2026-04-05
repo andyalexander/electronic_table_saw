@@ -50,8 +50,8 @@ QPushButton#but_reboot, QPushButton#but_shutdown { color: #ff8888; font-size: 12
 QCheckBox { color: #f0f0f0; }
 QCheckBox:disabled { color: #555555; }
 QCheckBox::indicator { width: 22px; height: 22px; }
-QGroupBox#grp_kerf_include { border: 1px solid #5a6a7a; border-radius: 4px; margin-top: 14px; color: #aaccee; font-size: 8pt; }
-QGroupBox#grp_kerf_include::title { subcontrol-origin: margin; subcontrol-position: top center; padding: 0 4px; }
+QGroupBox#grp_kerf_include { border: none; margin: 0; padding: 0; }
+QLabel#lbl_kerf_include { color: #aaccee; font-size: 8pt; }
 QLineEdit#txt_fence_calc { background-color: #1a1a1a; color: #00dd88; border: 2px solid #444444; border-radius: 3px; }
 QLabel { color: #f0f0f0; background-color: transparent; }
 QComboBox { background-color: #3c3f41; color: #f0f0f0; border: 1px solid #5a5a5a; border-radius: 4px; font-size: 16pt; }
@@ -552,16 +552,29 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
             </rect>
            </property>
            <property name="title">
-            <string>From RHS</string>
+            <string/>
            </property>
-           <property name="alignment">
-            <set>Qt::AlignHCenter</set>
-           </property>
+           <widget class="QLabel" name="lbl_kerf_include">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>3</y>
+              <width>86</width>
+              <height>18</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>From RHS</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
            <widget class="QCheckBox" name="chk_kerf_include">
             <property name="geometry">
              <rect>
               <x>32</x>
-              <y>22</y>
+              <y>24</y>
               <width>22</width>
               <height>24</height>
              </rect>
