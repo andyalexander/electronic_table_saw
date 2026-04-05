@@ -57,8 +57,12 @@ QLabel#lbl_kerf_include:disabled { color: #555555; }
 QLineEdit#txt_fence_calc { background-color: #1a1a1a; color: #00dd88; border: 2px solid #444444; border-radius: 3px; }
 QLabel { color: #f0f0f0; background-color: transparent; }
 QComboBox { background-color: #3c3f41; color: #f0f0f0; border: 1px solid #5a5a5a; border-radius: 4px; font-size: 16pt; }
+QComboBox:disabled { background-color: #2a2a2a; color: #555555; border: 1px solid #3a3a3a; }
 QComboBox QAbstractItemView { background-color: #3c3f41; color: #f0f0f0; selection-background-color: #4a6a9a; border: 1px solid #5a5a5a; }
-QRadioButton { color: #f0f0f0; font-size: 13pt; background-color: transparent; }
+QRadioButton { color: #3a4450; font-size: 14pt; background-color: transparent; }
+QRadioButton::indicator { width: 20px; height: 20px; border-radius: 10px; border: 2px solid #aaaaaa; background-color: #2a2a2a; }
+QRadioButton::indicator:checked { background-color: #00cc66; border: 2px solid #00ff88; }
+QRadioButton::indicator:unchecked:hover { border: 2px solid #cccccc; }
 QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: #252525; }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -610,7 +614,7 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
             <string/>
            </property>
            <property name="currentIndex">
-            <number>-1</number>
+            <number>1</number>
            </property>
           </widget>
           <widget class="ActionButton" name="but_jog_left">
@@ -1177,9 +1181,9 @@ Value</string>
             <property name="geometry">
              <rect>
               <x>450</x>
-              <y>25</y>
+              <y>20</y>
               <width>150</width>
-              <height>38</height>
+              <height>42</height>
              </rect>
             </property>
             <property name="font">
@@ -1201,9 +1205,9 @@ Value</string>
             <property name="geometry">
              <rect>
               <x>450</x>
-              <y>72</y>
+              <y>68</y>
               <width>150</width>
-              <height>38</height>
+              <height>42</height>
              </rect>
             </property>
             <property name="font">
