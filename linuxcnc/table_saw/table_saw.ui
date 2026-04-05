@@ -526,7 +526,7 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
             <rect>
              <x>0</x>
              <y>100</y>
-             <width>178</width>
+             <width>218</width>
              <height>55</height>
             </rect>
            </property>
@@ -544,14 +544,14 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
           <widget class="QLabel" name="lbl_kerf_include">
            <property name="geometry">
             <rect>
-             <x>185</x>
+             <x>223</x>
              <y>100</y>
-             <width>123</width>
-             <height>24</height>
+             <width>85</width>
+             <height>22</height>
             </rect>
            </property>
            <property name="text">
-            <string>Measure from RHS</string>
+            <string>From RHS</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -560,9 +560,9 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
           <widget class="QCheckBox" name="chk_kerf_include">
            <property name="geometry">
             <rect>
-             <x>185</x>
-             <y>126</y>
-             <width>123</width>
+             <x>223</x>
+             <y>124</y>
+             <width>85</width>
              <height>30</height>
             </rect>
            </property>
