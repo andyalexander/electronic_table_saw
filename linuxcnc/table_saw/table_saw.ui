@@ -50,7 +50,8 @@ QPushButton#but_reboot, QPushButton#but_shutdown { color: #ff8888; font-size: 12
 QCheckBox { color: #f0f0f0; }
 QCheckBox:disabled { color: #555555; }
 QCheckBox::indicator { width: 22px; height: 22px; }
-QLabel#lbl_kerf_include { color: #aaccee; font-size: 9pt; }
+QGroupBox#grp_kerf_include { border: 1px solid #5a6a7a; border-radius: 4px; margin-top: 14px; color: #aaccee; font-size: 8pt; }
+QGroupBox#grp_kerf_include::title { subcontrol-origin: margin; subcontrol-position: top center; padding: 0 4px; }
 QLineEdit#txt_fence_calc { background-color: #1a1a1a; color: #00dd88; border: 2px solid #444444; border-radius: 3px; }
 QLabel { color: #f0f0f0; background-color: transparent; }
 QComboBox { background-color: #3c3f41; color: #f0f0f0; border: 1px solid #5a5a5a; border-radius: 4px; font-size: 16pt; }
@@ -541,37 +542,34 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
             <string>Move by</string>
            </property>
           </widget>
-          <widget class="QLabel" name="lbl_kerf_include">
+          <widget class="QGroupBox" name="grp_kerf_include">
            <property name="geometry">
             <rect>
-             <x>223</x>
+             <x>222</x>
              <y>100</y>
-             <width>85</width>
-             <height>22</height>
+             <width>86</width>
+             <height>55</height>
             </rect>
            </property>
-           <property name="text">
+           <property name="title">
             <string>From RHS</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignHCenter</set>
            </property>
-          </widget>
-          <widget class="QCheckBox" name="chk_kerf_include">
-           <property name="geometry">
-            <rect>
-             <x>223</x>
-             <y>124</y>
-             <width>85</width>
-             <height>30</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::RightToLeft</enum>
-           </property>
+           <widget class="QCheckBox" name="chk_kerf_include">
+            <property name="geometry">
+             <rect>
+              <x>32</x>
+              <y>22</y>
+              <width>22</width>
+              <height>24</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
           </widget>
           <widget class="JogIncrements" name="jogincrements">
            <property name="geometry">
