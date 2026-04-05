@@ -274,11 +274,27 @@ class HandlerClass:
 
         self.w.txt_fence_calc.setText(txt)
 
+    def _confirm_and_run(self, title: str, message: str, command: list) -> None:
+        dlg = QtWidgets.QMessageBox(self.w)
+        dlg.setWindowTitle(title)
+        dlg.setText(message)
+        dlg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+        dlg.setDefaultButton(QtWidgets.QMessageBox.Cancel)
+        dlg.setStyleSheet(
+            "QMessageBox { background-color: #2b2b2b; color: #f0f0f0; }"
+            "QLabel { color: #f0f0f0; font-size: 14pt; }"
+            "QPushButton { background-color: #3c3f41; color: #f0f0f0; border: 1px solid #5a5a5a;"
+            "  border-radius: 4px; padding: 6px 20px; font-size: 13pt; }"
+            "QPushButton:hover { background-color: #4c5052; }"
+        )
+        if dlg.exec_() == QtWidgets.QMessageBox.Ok:
+            subprocess.run(command)
+
     def system_shutdown(self):
-        subprocess.run(['xfce4-session-logout', '--halt'])
+        self._confirm_and_run("Shutdown", "Shut down the machine?", ['sudo', 'shutdown', '-h', 'now'])
 
     def system_reboot(self):
-        subprocess.run(['xfce4-session-logout', '--reboot'])
+        self._confirm_and_run("Reboot", "Reboot the machine?", ['sudo', 'reboot'])
 
 
 # required handler boiler code #
