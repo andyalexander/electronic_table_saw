@@ -32,7 +32,7 @@ INI_PATH = os.path.join(os.path.dirname(__file__), '..', 'esf.ini')
 CONFIG_DEFAULTS = {
     'home_offset': 154.0,
     'kerf': 3.0,
-    'kerf_include': False,  # False = measure to left of blade, True = include kerf (measure to right)
+    'kerf_include': True,   # True = measure from RHS (no kerf offset), False = measure from LHS (subtract kerf)
 }
 
 
