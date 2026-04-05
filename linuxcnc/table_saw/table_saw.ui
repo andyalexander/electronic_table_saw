@@ -40,11 +40,17 @@ QPushButton:pressed { background-color: #4c5052; }
 QPushButton:disabled { background-color: #2a2a2a; color: #666666; border-color: #3a3a3a; }
 QPushButton#but_set_zero, QPushButton#but_set_current, QPushButton#but_home, QPushButton#but_fence_move_to, QPushButton#but_fence_move_by { background-color: #3a4450; color: #d0dde8; border: 2px solid #6688aa; border-radius: 4px; font-weight: bold; }
 QPushButton#but_set_zero:pressed, QPushButton#but_set_current:pressed, QPushButton#but_home:pressed, QPushButton#but_fence_move_to:pressed, QPushButton#but_fence_move_by:pressed { background-color: #4a5868; }
+QPushButton#but_set_zero:disabled, QPushButton#but_set_current:disabled, QPushButton#but_home:disabled, QPushButton#but_fence_move_to:disabled, QPushButton#but_fence_move_by:disabled { background-color: #2a2a2a; color: #555555; border: 2px solid #3a3a3a; }
 QPushButton#but_estop { background-color: #cc2222; color: white; font-size: 20pt; font-weight: bold; border: 3px solid #ff4444; border-radius: 6px; }
 QPushButton#but_estop:pressed { background-color: #991111; }
 QPushButton#but_enable { background-color: #226622; color: white; font-size: 18pt; font-weight: bold; border: 2px solid #44aa44; border-radius: 6px; }
 QPushButton#but_jog_left, QPushButton#but_jog_right { background-color: #1a4e8a; color: white; font-size: 14pt; font-weight: bold; border: 2px solid #4488cc; border-radius: 6px; }
+QPushButton#but_jog_left:disabled, QPushButton#but_jog_right:disabled { background-color: #1a1a1a; color: #444444; border: 2px solid #333333; }
 QPushButton#but_reboot, QPushButton#but_shutdown { color: #ff8888; font-size: 12pt; border-color: #aa4444; }
+QCheckBox { color: #f0f0f0; }
+QCheckBox:disabled { color: #555555; }
+QCheckBox::indicator { width: 22px; height: 22px; }
+QLabel#lbl_kerf_include { color: #aaccee; font-size: 9pt; }
 QLineEdit#txt_fence_calc { background-color: #1a1a1a; color: #00dd88; border: 2px solid #444444; border-radius: 3px; }
 QLabel { color: #f0f0f0; background-color: transparent; }
 QComboBox { background-color: #3c3f41; color: #f0f0f0; border: 1px solid #5a5a5a; border-radius: 4px; font-size: 16pt; }
@@ -492,6 +498,9 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
           <property name="is_idle_status" stdset="0">
            <bool>true</bool>
           </property>
+          <property name="is_homed_status" stdset="0">
+           <bool>true</bool>
+          </property>
           <widget class="QPushButton" name="but_fence_move_to">
            <property name="geometry">
             <rect>
@@ -517,7 +526,7 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
             <rect>
              <x>0</x>
              <y>100</y>
-             <width>308</width>
+             <width>178</width>
              <height>55</height>
             </rect>
            </property>
@@ -530,6 +539,38 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
            </property>
            <property name="text">
             <string>Move by</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="lbl_kerf_include">
+           <property name="geometry">
+            <rect>
+             <x>185</x>
+             <y>100</y>
+             <width>123</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Measure from RHS</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="chk_kerf_include">
+           <property name="geometry">
+            <rect>
+             <x>185</x>
+             <y>126</y>
+             <width>123</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
            </property>
           </widget>
           <widget class="JogIncrements" name="jogincrements">
@@ -962,6 +1003,9 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
            <bool>true</bool>
           </property>
           <property name="is_idle_status" stdset="0">
+           <bool>true</bool>
+          </property>
+          <property name="is_homed_status" stdset="0">
            <bool>true</bool>
           </property>
           <widget class="QFrame" name="frame">

@@ -94,13 +94,7 @@ class SettingsDialog(QtWidgets.QDialog):
         self.spin_kerf.setValue(config['kerf'])
         layout.addRow("Blade kerf:", self.spin_kerf)
 
-        self.chk_kerf_include = QtWidgets.QCheckBox("Include kerf in 'Move To' distance\n(measure to right/far side of blade)")
-        self.chk_kerf_include.setChecked(config['kerf_include'])
-        layout.addRow("Kerf mode:", self.chk_kerf_include)
-
         note = QtWidgets.QLabel(
-            "When checked: entered distance is to the far side of the blade.\n"
-            "Fence will be positioned kerf width closer.\n\n"
             "Home offset change takes effect after next homing."
         )
         note.setWordWrap(True)
@@ -122,13 +116,12 @@ class SettingsDialog(QtWidgets.QDialog):
             "QCheckBox { color: #f0f0f0; font-size: 12pt; }"
             "QPushButton { font-size: 12pt; }"
         )
-        self.resize(420, 300)
+        self.resize(460, 220)
 
     def get_config(self) -> dict:
         return {
             'home_offset': self.spin_home_offset.value(),
             'kerf': self.spin_kerf.value(),
-            'kerf_include': self.chk_kerf_include.isChecked(),
         }
 
 
@@ -155,6 +148,8 @@ class HandlerClass:
         self.w.move_but_grid.setEnabled(False)
         self.w.jogincrements.setCurrentIndex(1)
         self.w.but_settings.clicked.connect(self.open_settings)
+        self.w.chk_kerf_include.setChecked(self.config.get('kerf_include', True))
+        self.w.chk_kerf_include.stateChanged.connect(self._kerf_checkbox_changed)
         self.w.showMaximized()
 
     def get_coord_sys(self) -> str:
@@ -178,9 +173,18 @@ class HandlerClass:
         if require_calculator_value:
             self.fence_clear_display()
 
+    def _kerf_checkbox_changed(self) -> None:
+        """Save kerf_include state when checkbox is toggled."""
+        self.config['kerf_include'] = self.w.chk_kerf_include.isChecked()
+        save_config(self.config)
+
     def _apply_kerf(self, value: float) -> float:
-        """Adjust target position for kerf if kerf_include mode is enabled."""
-        if self.config.get('kerf_include', False):
+        """Adjust target position for kerf.
+        Checked (RHS): measuring from right/far side of blade — no adjustment needed.
+        Unchecked (LHS): measuring from left/near side — subtract kerf so fence lands at correct position.
+        e.g. 200mm entry, 3mm kerf → fence moves to 197mm.
+        """
+        if not self.w.chk_kerf_include.isChecked():
             return value - self.config.get('kerf', 0.0)
         return value
 
