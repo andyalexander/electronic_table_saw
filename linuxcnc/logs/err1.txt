@@ -1,0 +1,9 @@
+ound file(REL): ./esf.hal
+[QTvcp.QTVCP.QT_ISTAT][WARNING]  INI Parsing Error, No PROGRAM_PREFIX Entry in DISPLAY, Using: ~/linuxcnc/nc_files (qt_istat.py:532)
+[QTvcp.QTVCP.QT_ISTAT][WARNING]  INI Parsing Error, No DEFAULT_SPINDLE_0_SPEED Entry in DISPLAY, Using: 200 (qt_istat.py:532)
+[QTvcp.QTVCP.QT_ISTAT][WARNING]  INI Parsing Error, No MIN_SPINDLE_0_SPEED Entry in DISPLAY, Using: 100 (qt_istat.py:532)
+[QTvcp.QTVCP.QT_ISTAT][WARNING]  INI Parsing Error, No MAX_SPINDLE_0_SPEED Entry in DISPLAY, Using: 2500 (qt_istat.py:532)
+[QTvcp.QTVCP.QT_ISTAT][WARNING]  INI Parsing Error, No MAX_SPINDLE_0_OVERRIDE Entry in DISPLAY, Using: 1 (qt_istat.py:532)
+[QTvcp.QTVCP.QT_ISTAT][WARNING]  INI Parsing Error, No MIN_SPINDLE_0_OVERRIDE Entry in DISPLAY, Using: 0.5 (qt_istat.py:532)
+[QTvcp.QTVCP.QT_ISTAT][WARNING]  INI Parsing Error, No MAX_FEED_OVERRIDE Entry in DISPLAY, Using: 1.5 (qt_istat.py:532)
+Namespace Gst not available
