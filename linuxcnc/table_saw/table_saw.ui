@@ -48,6 +48,7 @@ QPushButton#but_reboot, QPushButton#but_shutdown { color: #ff8888; font-size: 12
 QLineEdit#txt_fence_calc { background-color: #1a1a1a; color: #00dd88; border: 2px solid #444444; border-radius: 3px; }
 QLabel { color: #f0f0f0; background-color: transparent; }
 QComboBox { background-color: #3c3f41; color: #f0f0f0; border: 1px solid #5a5a5a; border-radius: 4px; font-size: 16pt; }
+QComboBox QAbstractItemView { background-color: #3c3f41; color: #f0f0f0; selection-background-color: #4a6a9a; border: 1px solid #5a5a5a; }
 QRadioButton { color: #f0f0f0; font-size: 13pt; background-color: transparent; }
 QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: #252525; }</string>
   </property>
@@ -118,7 +119,7 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
           <item>
            <widget class="QLineEdit" name="txt_fence_calc">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>3</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -126,7 +127,7 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
             <property name="font">
              <font>
               <family>DejaVu Sans</family>
-              <pointsize>40</pointsize>
+              <pointsize>45</pointsize>
               <weight>50</weight>
               <bold>false</bold>
              </font>
@@ -142,7 +143,7 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
           <item>
            <widget class="QPushButton" name="but_num_clear">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -503,6 +504,8 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
            <property name="font">
             <font>
              <pointsize>15</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -521,6 +524,8 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
            <property name="font">
             <font>
              <pointsize>15</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -1081,6 +1086,8 @@ QFrame#frame { border: 1px solid #444444; border-radius: 3px; background-color: 
             <property name="font">
              <font>
               <pointsize>15</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
             </property>
             <property name="text">
@@ -1100,6 +1107,8 @@ Zero</string>
             <property name="font">
              <font>
               <pointsize>15</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
             </property>
             <property name="text">
@@ -1164,6 +1173,8 @@ Value</string>
             <property name="font">
              <font>
               <pointsize>15</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
             </property>
             <property name="text">
@@ -1789,6 +1800,19 @@ Value</string>
          <string>Shutdown</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="but_settings">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>430</y>
+          <width>249</width>
+          <height>45</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Settings</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -1807,11 +1831,6 @@ Value</string>
   <customwidget>
    <class>IndicatedPushButton</class>
    <extends>QPushButton</extends>
-   <header>qtvcp.widgets.simple_widgets</header>
-  </customwidget>
-  <customwidget>
-   <class>PushButton</class>
-   <extends>IndicatedPushButton</extends>
    <header>qtvcp.widgets.simple_widgets</header>
   </customwidget>
   <customwidget>

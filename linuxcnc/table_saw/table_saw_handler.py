@@ -1,5 +1,7 @@
 import sys
 import os
+import json
+import re
 import linuxcnc
 
 from PyQt5 import QtCore, QtWidgets
@@ -24,6 +26,111 @@ KEYBIND = Keylookup()
 STATUS = Status()
 ACTION = Action()
 
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), 'config.json')
+INI_PATH = os.path.join(os.path.dirname(__file__), '..', 'esf.ini')
+
+CONFIG_DEFAULTS = {
+    'home_offset': 154.0,
+    'kerf': 3.0,
+    'kerf_include': False,  # False = measure to left of blade, True = include kerf (measure to right)
+}
+
+
+def load_config() -> dict:
+    if os.path.exists(CONFIG_PATH):
+        try:
+            with open(CONFIG_PATH, 'r') as f:
+                data = json.load(f)
+            # Fill in any missing keys with defaults
+            for k, v in CONFIG_DEFAULTS.items():
+                data.setdefault(k, v)
+            return data
+        except Exception as e:
+            LOG.warning(f"Failed to load config: {e}, using defaults")
+    return dict(CONFIG_DEFAULTS)
+
+
+def save_config(config: dict) -> None:
+    with open(CONFIG_PATH, 'w') as f:
+        json.dump(config, f, indent=2)
+
+
+def update_ini_home_offset(value: float) -> None:
+    """Update HOME_OFFSET and HOME values in esf.ini"""
+    try:
+        ini_path = os.path.realpath(INI_PATH)
+        with open(ini_path, 'r') as f:
+            text = f.read()
+        text = re.sub(r'^HOME_OFFSET\s*=.*$', f'HOME_OFFSET = {value}', text, flags=re.MULTILINE)
+        text = re.sub(r'^HOME\s*=.*$', f'HOME = {value}', text, flags=re.MULTILINE)
+        with open(ini_path, 'w') as f:
+            f.write(text)
+    except Exception as e:
+        LOG.error(f"Failed to update INI home offset: {e}")
+
+
+class SettingsDialog(QtWidgets.QDialog):
+    def __init__(self, config: dict, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Settings")
+        self.setModal(True)
+        self.config = dict(config)
+
+        layout = QtWidgets.QFormLayout(self)
+        layout.setSpacing(16)
+        layout.setContentsMargins(20, 20, 20, 20)
+
+        self.spin_home_offset = QtWidgets.QDoubleSpinBox()
+        self.spin_home_offset.setRange(0.0, 1000.0)
+        self.spin_home_offset.setDecimals(2)
+        self.spin_home_offset.setSuffix(" mm")
+        self.spin_home_offset.setValue(config['home_offset'])
+        layout.addRow("Home offset:", self.spin_home_offset)
+
+        self.spin_kerf = QtWidgets.QDoubleSpinBox()
+        self.spin_kerf.setRange(0.0, 20.0)
+        self.spin_kerf.setDecimals(2)
+        self.spin_kerf.setSuffix(" mm")
+        self.spin_kerf.setValue(config['kerf'])
+        layout.addRow("Blade kerf:", self.spin_kerf)
+
+        self.chk_kerf_include = QtWidgets.QCheckBox("Include kerf in 'Move To' distance\n(measure to right/far side of blade)")
+        self.chk_kerf_include.setChecked(config['kerf_include'])
+        layout.addRow("Kerf mode:", self.chk_kerf_include)
+
+        note = QtWidgets.QLabel(
+            "When checked: entered distance is to the far side of the blade.\n"
+            "Fence will be positioned kerf width closer.\n\n"
+            "Home offset change takes effect after next homing."
+        )
+        note.setWordWrap(True)
+        note.setStyleSheet("color: #aaaaaa; font-size: 10pt;")
+        layout.addRow(note)
+
+        buttons = QtWidgets.QDialogButtonBox(
+            QtWidgets.QDialogButtonBox.Save | QtWidgets.QDialogButtonBox.Cancel
+        )
+        buttons.accepted.connect(self.accept)
+        buttons.rejected.connect(self.reject)
+        layout.addRow(buttons)
+
+        self.setStyleSheet(
+            "QDialog { background-color: #2b2b2b; color: #f0f0f0; }"
+            "QLabel { color: #f0f0f0; }"
+            "QDoubleSpinBox { background-color: #3c3f41; color: #f0f0f0; border: 1px solid #5a5a5a; "
+            "    border-radius: 4px; padding: 4px; font-size: 14pt; }"
+            "QCheckBox { color: #f0f0f0; font-size: 12pt; }"
+            "QPushButton { font-size: 12pt; }"
+        )
+        self.resize(420, 300)
+
+    def get_config(self) -> dict:
+        return {
+            'home_offset': self.spin_home_offset.value(),
+            'kerf': self.spin_kerf.value(),
+            'kerf_include': self.chk_kerf_include.isChecked(),
+        }
+
 
 class HandlerClass:
 
@@ -33,6 +140,7 @@ class HandlerClass:
         self.hal = halcomp
         self.w = widgets
         self.PATHS = paths
+        self.config = load_config()
 
     # at this point:
     # the widgets are instantiated.
@@ -46,6 +154,7 @@ class HandlerClass:
 
         self.w.move_but_grid.setEnabled(False)
         self.w.jogincrements.setCurrentIndex(1)
+        self.w.but_settings.clicked.connect(self.open_settings)
         self.w.showMaximized()
 
     def get_coord_sys(self) -> str:
@@ -69,11 +178,22 @@ class HandlerClass:
         if require_calculator_value:
             self.fence_clear_display()
 
+    def _apply_kerf(self, value: float) -> float:
+        """Adjust target position for kerf if kerf_include mode is enabled."""
+        if self.config.get('kerf_include', False):
+            return value - self.config.get('kerf', 0.0)
+        return value
+
     def fence_move_to(self) -> None:
         """Move fence to specific location using machine co-ordinates and absolute movement"""
         co_ord = self.get_coord_sys()
-        self.send_gcode_fence(f"{co_ord} G90 G0 X<X>", True)
-        # self.send_gcode_fence("G53 G0 G90 X<X>", True)
+        try:
+            raw = float(self.w.txt_fence_calc.text())
+        except ValueError:
+            return
+        target = self._apply_kerf(raw)
+        ACTION.CALL_MDI(f"{co_ord} G90 G0 X{target:.4f}")
+        self.fence_clear_display()
 
     def fence_move_by(self) -> None:
         """Move fence by specific amount.  Uses relative co-ordinates"""
@@ -95,6 +215,21 @@ class HandlerClass:
     def fence_home(self) -> None:
         ACTION.SET_MACHINE_HOMING(0)
         self.w.rad_machine_coord.setChecked(True)
+
+    def open_settings(self) -> None:
+        dlg = SettingsDialog(self.config, parent=self.w)
+        if dlg.exec_() == QtWidgets.QDialog.Accepted:
+            new_config = dlg.get_config()
+            home_offset_changed = new_config['home_offset'] != self.config.get('home_offset')
+            self.config.update(new_config)
+            save_config(self.config)
+            if home_offset_changed:
+                update_ini_home_offset(new_config['home_offset'])
+                QtWidgets.QMessageBox.information(
+                    self.w, "Home Offset Updated",
+                    f"Home offset set to {new_config['home_offset']} mm.\n"
+                    "Re-home the machine for the change to take effect."
+                )
 
     def __getitem__(self, item):
         return getattr(self, item)
